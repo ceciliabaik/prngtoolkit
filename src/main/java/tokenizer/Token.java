@@ -1,7 +1,7 @@
 package tokenizer;
 
 /**
- * A string that holds a sequence of characters, like a word or a phrase.
+ * A string that holds a series of characters, like a word or a phrase.
  */
 public class Token {
     private String tokenName;

@@ -1,43 +1,89 @@
 package tokenizer;
 
-public class Tokenizer {
+import java.util.ArrayList;
+
+/**
+ * Tokenizer is a program that performs lexical analysis, which 
+ * means a character-by-character evaluation of the input source 
+ * code and identification of the tokens.
+ */
+public abstract class Tokenizer implements PublicInterface {
+    private ArrayList<Token> tokenList;
+    private final String inputSourceCode;
 
     /**
      * This constructor creates a new Tokenizer.
      */
-    public Tokenizer() {}
-
-    /**
-     * This constructor accepts an argument of specified string.
-     */
-    public Tokenizer(String string) {}
-
-    /**
-     * This constructor accepts an argument of specified string and dot.
-     */
-    public Tokenizer(String string, String dot) {}
-
-    public void getActiveToken () {
-        // TODO: This method gets the active token which is the first token of a string.
+    private Tokenizer(String inputSourceCode) {
+      this.inputSourceCode = inputSourceCode;
     }
 
+    /**
+     * This method gets the active token which is the first token of a string.
+     */
+    @Override
+    public void getActiveToken() {
+        for (int i = 0; i < inputSourceCode.length; i++) {
+        }
+    }
+
+    /**
+     * This method gets the end token of a string.
+     */
+    @Override
     public void getEndToken() {
-        // TODO: This method gets the end token of a string.
+        for (int i = 0; i < inputSourceCode.length; i++) {
+        }
     }
 
+    /**
+     * This method returns a special token of END.
+     */
+    @Override
+    public void getSpecialToken() {
+        for (int i = 0; i < inputSourceCode.length; i++) {
+        }
+    }
+
+    /**
+     * This method uses the Maximal Munch rule.
+     */
+    @Override
+    public void getLongestMatch() {
+        for (int i = 0; i < inputSourceCode.length; i++) {
+        }
+    }
+
+    /**
+     * This method moves active token forward to next token.
+     */
+    @Override
     public void nextToken() {
-        // TODO: This method moves active token forward to next token.
+        for (int i = 0; i < inputSourceCode.length; i++) {
+        }
     }
 
+    /**
+     * This method moves active token backwards to previous token.
+     */
+    @Override
     public void previousToken() {
-        // TODO: This method moves active token backwards to previous token.
+        for (int i = 0; i < inputSourceCode.length; i++) {
+        }
     }
 
+    /**
+     * This method checks if there are more tokens available.
+     */
+    @Override
     public void hasMoreTokens() {
-        // TODO: This method checks if there are more tokens available.
+        for (int i = 0; i < inputSourceCode.length; i++) {
+        }
     }
 
-    public void toString() {
-        // TODO: This method prints the result to the console.
+    /**
+     * This method converts a series of characters into a series of tokens.
+     */
+    private void performTokenization() {
     }
 }

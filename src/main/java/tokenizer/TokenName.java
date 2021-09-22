@@ -9,5 +9,6 @@ public enum TokenName {
     SEPARATOR,
     OPERATOR,
     LITERAL,
-    COMMENT
+    COMMENT,
+    NUMBER
 }
