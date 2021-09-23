@@ -20,8 +20,8 @@ public class SearchPattern {
     public SearchPattern() {}
 
     public void defineSearchPattern() {
-      Pattern pattern = Pattern.compile("[a-zåäöA-ZÅÄÖ]+");
-      Matcher matcher = pattern.matcher("MeningenbeståravÖrd");
+      Pattern pattern = Pattern.compile("([a-zåäöA-ZÅÄÖ]+)(.+)(\\S+)");
+      Matcher matcher = pattern.matcher("Meningen består av ord.");
       boolean bool = matcher.matches();
       System.out.println(pattern);
       System.out.println(matcher);
