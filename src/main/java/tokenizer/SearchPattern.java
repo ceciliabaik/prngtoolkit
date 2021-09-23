@@ -17,16 +17,32 @@ public class SearchPattern {
         this.matcher = matcher;
     }
 
-    public Pattern createPatternToUseInSearch(String inputSourceCode) {
-        return Pattern.compile(inputSourceCode);
+    public SearchPattern() {}
+
+    public void defineSearchPattern() {
+      Pattern pattern = Pattern.compile("[a-zA-Z]+.");
+      Matcher matcher = pattern.matcher("Meningenbestaravord.");
+      boolean bool = matcher.matches();
+      System.out.println(pattern);
+      System.out.println(matcher);
+      System.out.println(bool);
     }
 
-    public Matcher searchForPatternInString(String inputSourceCode) {
+    public Matcher getStringToMatchSearchPattern(String inputSourceCode) {
         return pattern.matcher(inputSourceCode);
     }
 
-    public Boolean foundPatternInString() {
+    public Boolean foundMatchesBetweenSearchPatternAndString() {
+        return matcher.matches();
+    }
+
+    public Boolean foundSearchPatternInString() {
         return matcher.find();
+    }
+
+    public static void main(String[] args) {
+      SearchPattern pattern = new SearchPattern();
+      pattern.defineSearchPattern();
     }
 }
 
