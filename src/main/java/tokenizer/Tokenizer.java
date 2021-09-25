@@ -8,82 +8,65 @@ import java.util.ArrayList;
  * code and identification of the tokens.
  */
 public abstract class Tokenizer implements PublicInterface {
-    private ArrayList<Token> tokenList;
-    private final String inputSourceCode;
+    private ArrayList<Token> tokenTypeList;
+    private final String textString;
 
-    /**
-     * This constructor creates a new Tokenizer.
-     */
-    private Tokenizer(String inputSourceCode) {
-      this.inputSourceCode = inputSourceCode;
+    private Tokenizer(String textString) {
+      this.textString = textString;
     }
 
     /**
-     * This method gets the active token which is the first token of a string.
+     * Perform tokenization.
      */
+    public void convertTextStringIntoTokens() {}
+
     @Override
     public void getActiveToken() {
-        for (int i = 0; i < inputSourceCode.length; i++) {
-        }
+      String[] tokens = {"Meningen", "består", "av", "ord"};
+      for (String token : tokens) {
+        System.out.println(token);
+    }
     }
 
-    /**
-     * This method gets the end token of a string.
-     */
     @Override
     public void getEndToken() {
-        for (int i = 0; i < inputSourceCode.length; i++) {
+        for (int i = 0; i < textString.length(); i++) {
+            System.out.println(textString.charAt(i));
         }
     }
 
-    /**
-     * This method returns a special token of END.
-     */
     @Override
-    public void getSpecialToken() {
-        for (int i = 0; i < inputSourceCode.length; i++) {
+    public void getSpecialTokenOfEnd() {
+        for (int i = 0; i < textString.length(); i++) {
+            System.out.println(textString.charAt(i));
         }
     }
 
-    /**
-     * This method uses the Maximal Munch rule.
-     */
     @Override
     public void getLongestMatch() {
-        for (int i = 0; i < inputSourceCode.length; i++) {
+        for (int i = 0; i < textString.length(); i++) {
+            System.out.println(textString.charAt(i));
         }
     }
 
-    /**
-     * This method moves active token forward to next token.
-     */
     @Override
     public void nextToken() {
-        for (int i = 0; i < inputSourceCode.length; i++) {
+        for (int i = 0; i < textString.length(); i++) {
+          System.out.println(textString.charAt(i));
         }
     }
 
-    /**
-     * This method moves active token backwards to previous token.
-     */
     @Override
     public void previousToken() {
-        for (int i = 0; i < inputSourceCode.length; i++) {
+        for (int i = 0; i <  textString.length(); i++) {
+          System.out.println(textString.charAt(i));
         }
     }
-
-    /**
-     * This method checks if there are more tokens available.
-     */
+    
     @Override
     public void hasMoreTokens() {
-        for (int i = 0; i < inputSourceCode.length; i++) {
+        for (int i = 0; i < textString.length(); i++) {
+          System.out.println(textString.charAt(i));
         }
-    }
-
-    /**
-     * This method converts a series of characters into a series of tokens.
-     */
-    private void performTokenization() {
     }
 }

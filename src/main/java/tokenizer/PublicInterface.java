@@ -5,7 +5,7 @@ public interface PublicInterface {
     void getEndToken();
     void previousToken();
     void nextToken();
-    void getSpecialToken();
+    void getSpecialTokenOfEnd();
     void hasMoreTokens();
     void getLongestMatch();
 }

@@ -1,5 +1,6 @@
 package tokenizer;
 
+import java.util.Arrays;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -28,9 +29,24 @@ public class SearchPattern {
       System.out.println(bool);
     }
 
+    public void spliStringIntoTokenWithSpaceDelimiter() {
+        String text = "Meningen består av ord.";
+        String[] result = text.split(" ");
+        System.out.println(Arrays.toString(result));
+
+    }
+
     public Matcher getStringToMatchSearchPattern(String inputSourceCode) {
         return pattern.matcher(inputSourceCode);
     }
+
+    public Matcher defineTokensByRegularExpressions(String inputSourceCode) {
+      return pattern.matcher(inputSourceCode);
+  }
+
+    public Matcher identifyTokens(String inputSourceCode) {
+      return pattern.matcher(inputSourceCode);
+  }
 
     public Boolean foundMatchesBetweenSearchPatternAndString() {
         return matcher.matches();
@@ -43,6 +59,7 @@ public class SearchPattern {
     public static void main(String[] args) {
       SearchPattern pattern = new SearchPattern();
       pattern.defineSearchPattern();
+        pattern.spliStringIntoTokenWithSpaceDelimiter();
     }
 }
 
