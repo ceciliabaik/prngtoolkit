@@ -10,36 +10,71 @@ import java.util.ArrayList;
 public abstract class Tokenizer implements PublicInterface {
     private ArrayList<Token> tokenTypeList;
     private final String textString;
+    private String[] tokens = {"Meningen", "består", "av", "ord"};
+    private boolean isActiveToken;
 
     private Tokenizer(String textString) {
       this.textString = textString;
     }
 
-    /**
-     * Perform tokenization.
-     */
-    public void convertTextStringIntoTokens() {}
-
-    @Override
-    public void getActiveToken() {
-      String[] tokens = {"Meningen", "består", "av", "ord"};
-      for (String token : tokens) {
-        System.out.println(token);
-    }
+    public boolean isActiveToken() {
+        return isActiveToken;
     }
 
+    public void setActiveToken(boolean activeToken) {
+        isActiveToken = activeToken;
+    }
+
+    public void performTokenization() {
+      // TODO: ConvertTextStringIntoTokens.
+    }
+
     @Override
-    public void getEndToken() {
-        for (int i = 0; i < textString.length(); i++) {
-            System.out.println(textString.charAt(i));
+    public int getActiveToken() {
+      int activeToken = 0;
+      for (int i = 0; i < tokens.length; i++) {
+        if (isActiveToken() == false) {
+          setActiveToken(true);
+          activeToken = Integer.parseInt(tokens[0]);
+        } else {
+          throw new Error();
         }
+      }
+      return activeToken;
     }
 
     @Override
-    public void getSpecialTokenOfEnd() {
-        for (int i = 0; i < textString.length(); i++) {
-            System.out.println(textString.charAt(i));
+    public int nextToken() {
+      int nextToken = 0;
+      for (int i = 0; i < tokens.length; i++) {
+        if (isActiveToken() == true) {
+          getActiveToken();
+          nextToken = Integer.parseInt(tokens[0]);
+        } 
+      }
+      return nextToken;
+    }
+
+    @Override
+    public int previousToken() {
+      int previousToken = 0;
+      for (int i = 0; i < tokens.length; i++) {
+        if (isActiveToken() == true) {
+          getActiveToken();
+          previousToken = Integer.parseInt(tokens[0]);
         }
+      }
+      return previousToken;
+    }
+
+    @Override
+    public int getEndToken() {
+      int endToken = 0;
+      for (int i = 0; i < tokens.length; i++) {
+        if (hasMoreTokens() == true)
+          endToken = Integer.parseInt(tokens[0]);
+      }
+      return endToken;
     }
 
     @Override
@@ -48,25 +83,14 @@ public abstract class Tokenizer implements PublicInterface {
             System.out.println(textString.charAt(i));
         }
     }
-
-    @Override
-    public void nextToken() {
-        for (int i = 0; i < textString.length(); i++) {
-          System.out.println(textString.charAt(i));
-        }
-    }
-
-    @Override
-    public void previousToken() {
-        for (int i = 0; i <  textString.length(); i++) {
-          System.out.println(textString.charAt(i));
-        }
-    }
     
     @Override
-    public void hasMoreTokens() {
-        for (int i = 0; i < textString.length(); i++) {
-          System.out.println(textString.charAt(i));
-        }
-    }
+    public boolean hasMoreTokens() {
+      boolean isMoreTokens;
+      for (int i = 0; i < tokens.length; i++) {
+          foundMoreTokens = Integer.parseInt(tokens[0]);
+      }
+      return foundMoreTokens;
+  }
 }
+

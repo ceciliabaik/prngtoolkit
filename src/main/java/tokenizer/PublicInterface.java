@@ -1,10 +1,10 @@
 package tokenizer;
 
 public interface PublicInterface {
-    void getActiveToken();
-    void getEndToken();
-    void previousToken();
-    void nextToken();
+    int getActiveToken();
+    int getEndToken();
+    int previousToken();
+    int nextToken();
     void getSpecialTokenOfEnd();
     void hasMoreTokens();
     void getLongestMatch();
