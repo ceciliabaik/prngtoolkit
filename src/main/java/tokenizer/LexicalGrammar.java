@@ -9,18 +9,21 @@ public class LexicalGrammar {
     this.description = description;
   }
 
-  // Defines syntax of tokens.
-  public String stringLiteral() {
-    description = "";
+  public LexicalGrammar() {
+
+  }
+
+  public String literalRegex() {
+    description = "([a-zåäöA-ZÅÄÖ]+)";
+    return description;
+  }
+
+  public String integerCharacter() {
+    description = "([0-9]+)";
     return description;
   }
 
   public String dotLiteral() {
-    description = " ";
-    return description;
-  }
-
-  public String integerLiteral() {
     description = "";
     return description;
   }
@@ -35,7 +38,7 @@ public class LexicalGrammar {
     return description;
   }
 
-  public String multiplicationLiteral() {
+  public String multiplicationRegex() {
     description = "";
     return description;
   }
@@ -45,13 +48,23 @@ public class LexicalGrammar {
     return description;
   }
 
-  public String hexadecimalIntegerLiteral() {
+  public String hexadecimalRegex() {
     description = "";
     return description;
   }
 
-  public String endLiteral() {
-    description = " ";
+  public String endRegex() {
+    description = "$";
+    return description;
+  }
+
+  public String commentsRegex() {
+    description = "";
+    return description;
+  }
+
+  public String whiteSpaceRegex() {
+    description = "(\s+)";
     return description;
   }
 }

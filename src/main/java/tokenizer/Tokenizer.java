@@ -7,14 +7,19 @@ import java.util.ArrayList;
  * means a character-by-character evaluation of the input source 
  * code and identification of the tokens.
  */
-public abstract class Tokenizer implements PublicInterface {
-    private ArrayList<Token> tokenTypeList;
-    private final String textString;
-    private String[] tokens = {"Meningen", "består", "av", "ord"};
+public class Tokenizer {
+    private ArrayList<TokenType> tokenTypeList;
+    String[] tokens = {"Meningen", "består", "av", "ord", "."};
+    private String string;
     private boolean isActiveToken;
 
-    private Tokenizer(String textString) {
-      this.textString = textString;
+    public Tokenizer(ArrayList<TokenType> tokenTypeList, String string) {
+      this.tokenTypeList = tokenTypeList;
+      this.string = string;
+    }
+
+    public Tokenizer() {
+
     }
 
     public boolean isActiveToken() {
@@ -26,40 +31,44 @@ public abstract class Tokenizer implements PublicInterface {
     }
 
     public void performTokenization() {
-      // TODO: ConvertTextStringIntoTokens.
+        // TODO: ConvertTextStringIntoTokens.
     }
 
-    @Override
-    public int getActiveToken() {
-      int activeToken = 0;
-      for (int i = 0; i < tokens.length; i++) {
-        if (isActiveToken() == false) {
-          setActiveToken(true);
-          activeToken = Integer.parseInt(tokens[0]);
-        } else {
-          throw new Error();
-        }
+    public void evaluator() {
+        for (int i = 0; i < string.length(); i++) {
+        splitIntoTokensWithDelimiter();
       }
+    }
+
+    public void splitIntoTokensWithDelimiter() {
+      // tokenValue = string.split(" ");
+    }
+
+    public int getActiveToken() {
+        int activeToken = 0;
+        for (int i = 0; i < tokens.length; i++) {
+            if (!isActiveToken()) {
+                setActiveToken(true);
+            activeToken = Integer.parseInt(tokens[0]);
+            }
+        }
       return activeToken;
     }
 
-    @Override
     public int nextToken() {
       int nextToken = 0;
       for (int i = 0; i < tokens.length; i++) {
-        if (isActiveToken() == true) {
-          getActiveToken();
-          nextToken = Integer.parseInt(tokens[0]);
+        if (isActiveToken()) {
+          nextToken++;
         } 
       }
       return nextToken;
     }
 
-    @Override
     public int previousToken() {
       int previousToken = 0;
       for (int i = 0; i < tokens.length; i++) {
-        if (isActiveToken() == true) {
+        if (isActiveToken()) {
           getActiveToken();
           previousToken = Integer.parseInt(tokens[0]);
         }
@@ -67,30 +76,25 @@ public abstract class Tokenizer implements PublicInterface {
       return previousToken;
     }
 
-    @Override
-    public int getEndToken() {
-      int endToken = 0;
-      for (int i = 0; i < tokens.length; i++) {
-        if (hasMoreTokens() == true)
-          endToken = Integer.parseInt(tokens[0]);
-      }
-      return endToken;
-    }
-
-    @Override
-    public void getLongestMatch() {
-        for (int i = 0; i < textString.length(); i++) {
-            System.out.println(textString.charAt(i));
-        }
-    }
+    // @Override
+    // public int getEndToken() {
+    //   String endToken = "";
+    //   for (int i = 0; i < tokens.length; i++) {
+    //     if (hasMoreTokens()) {
+    //     } 
+    //   }
+    //   return endToken;
+    // }
     
-    @Override
-    public boolean hasMoreTokens() {
-      boolean isMoreTokens;
-      for (int i = 0; i < tokens.length; i++) {
-          foundMoreTokens = Integer.parseInt(tokens[0]);
-      }
-      return foundMoreTokens;
-  }
+    // @Override
+    // public boolean hasMoreTokens() {
+    //   String lastToken = tokens[tokens.length - 1];
+    //   for (int i = 0; i < tokens.length; i++) {
+    //       if (lastToken) {
+    //           return true;
+    //       }
+    //   }
+    //   return false;
+    // }
 }
 

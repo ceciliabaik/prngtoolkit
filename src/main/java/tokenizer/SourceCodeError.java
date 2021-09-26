@@ -1,10 +1,12 @@
 package tokenizer;
 
-public class SourceCodeErrors {
+public class SourceCodeError {
 
     public void detectIllegalCharacters() {
     }
 
     public void throwErrorIllegalCharacters() {
     }
+
+    public void lexicalError() {}
 }
