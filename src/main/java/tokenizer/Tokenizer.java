@@ -1,6 +1,7 @@
 package tokenizer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Tokenizer is a program that performs lexical analysis, which 
@@ -9,17 +10,13 @@ import java.util.ArrayList;
  */
 public class Tokenizer {
     private ArrayList<TokenType> tokenTypeList;
-    String[] tokens = {"Meningen", "består", "av", "ord", "."};
+    ArrayList<String> tokens = new ArrayList<String>(Arrays.asList("Meningen", "består", "av", "ord", "."));
     private String string;
     private boolean isActiveToken;
 
     public Tokenizer(ArrayList<TokenType> tokenTypeList, String string) {
       this.tokenTypeList = tokenTypeList;
       this.string = string;
-    }
-
-    public Tokenizer() {
-
     }
 
     public boolean isActiveToken() {
@@ -44,57 +41,50 @@ public class Tokenizer {
       // tokenValue = string.split(" ");
     }
 
-    public int getActiveToken() {
-        int activeToken = 0;
-        for (int i = 0; i < tokens.length; i++) {
-            if (!isActiveToken()) {
-                setActiveToken(true);
-            activeToken = Integer.parseInt(tokens[0]);
-            }
+    public void getInitialActiveToken() {
+        if (!isActiveToken()) {
+            setActiveToken(true);
+            String activeToken = tokens.get(0);
+            System.out.println(activeToken);
         }
-      return activeToken;
     }
 
-    public int nextToken() {
-      int nextToken = 0;
-      for (int i = 0; i < tokens.length; i++) {
-        if (isActiveToken()) {
-          nextToken++;
-        } 
-      }
-      return nextToken;
-    }
-
-    public int previousToken() {
-      int previousToken = 0;
-      for (int i = 0; i < tokens.length; i++) {
-        if (isActiveToken()) {
-          getActiveToken();
-          previousToken = Integer.parseInt(tokens[0]);
+    public void moveActiveTokenForward() {
+        for (int i = 0; i < tokens.size(); i++) {
+            String nextToken = tokens.get(i);
+            System.out.println(nextToken);
         }
-      }
-      return previousToken;
     }
 
-    // @Override
-    // public int getEndToken() {
-    //   String endToken = "";
-    //   for (int i = 0; i < tokens.length; i++) {
-    //     if (hasMoreTokens()) {
-    //     } 
-    //   }
-    //   return endToken;
-    // }
-    
-    // @Override
-    // public boolean hasMoreTokens() {
-    //   String lastToken = tokens[tokens.length - 1];
-    //   for (int i = 0; i < tokens.length; i++) {
-    //       if (lastToken) {
-    //           return true;
-    //       }
-    //   }
-    //   return false;
-    // }
+    public void moveActiveTokenBackwards() { 
+        for (int i = tokens.size()-1; i >= 0; i--) {
+          String previousToken = tokens.get(i);
+          System.out.println(previousToken);
+        }
+    }
+
+    public void getSpecialTokenOfEnd() {
+          for (int i = 0; i < tokens.size(); i++) {
+            String endToken = tokens.get(i);
+            System.out.println(endToken);
+        }
+    }
+
+    public void removeWhiteSpaceBeforeNextToken() {
+        for (int i = 0; i < tokens.size(); i++) {
+          String endToken = tokens.get(i);
+          System.out.println(endToken);
+        }
+    }
+
+    public boolean hasMoreTokens() {
+      String lastToken = tokens[tokens.length - 1];
+      for (int i = 0; i < tokens.length; i++) {
+          if (lastToken) {
+              return true;
+          }
+      }
+      return false;
+    }
 }
 

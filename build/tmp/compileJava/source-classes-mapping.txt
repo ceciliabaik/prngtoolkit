@@ -1,18 +1,8 @@
-tokenizer/LexicalGrammar.java
- tokenizer.LexicalGrammar
 tokenizer/TokenType.java
  tokenizer.TokenType
 tokenizer/PublicInterface.java
  tokenizer.PublicInterface
-tokenizer/SourceCodeError.java
- tokenizer.SourceCodeError
-tokenizer/ConsoleUi.java
- tokenizer.ConsoleUi
 tokenizer/TokenName.java
  tokenizer.TokenName
-tokenizer/App.java
- tokenizer.App
-tokenizer/Token.java
- tokenizer.Token
-tokenizer/Tokenizer.java
- tokenizer.Tokenizer
+tokenizer/SearchPattern.java
+ tokenizer.SearchPattern
