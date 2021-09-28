@@ -10,81 +10,92 @@ import java.util.Arrays;
  */
 public class Tokenizer {
     private ArrayList<TokenType> tokenTypeList;
-    ArrayList<String> tokens = new ArrayList<String>(Arrays.asList("Meningen", "består", "av", "ord", "."));
+    ArrayList<String> tokens = new ArrayList<>(Arrays.asList("Meningen", "består", "av", "ord", "."));
     private String string;
     private boolean isActiveToken;
+    private String activeToken;
 
     public Tokenizer(ArrayList<TokenType> tokenTypeList, String string) {
       this.tokenTypeList = tokenTypeList;
       this.string = string;
     }
 
+    public String getString() {
+        return string;
+    }
+
     public boolean isActiveToken() {
-        return isActiveToken;
+      return isActiveToken;
     }
 
     public void setActiveToken(boolean activeToken) {
-        isActiveToken = activeToken;
+      isActiveToken = activeToken;
     }
 
     public void performTokenization() {
-        // TODO: ConvertTextStringIntoTokens.
+      // TODO: ConvertTextStringIntoTokens.
     }
 
     public void evaluator() {
-        for (int i = 0; i < string.length(); i++) {
+      String[] string = tokenizer.getString();
+      for (int i = 0; i < string.length; i++) 
         splitIntoTokensWithDelimiter();
-      }
     }
 
-    public void splitIntoTokensWithDelimiter() {
-      // tokenValue = string.split(" ");
+    private String[] splitIntoTokensWithDelimiter() {
+      return string.split(" ");
     }
 
     public void getInitialActiveToken() {
-        if (!isActiveToken()) {
-            setActiveToken(true);
-            String activeToken = tokens.get(0);
-            System.out.println(activeToken);
-        }
-    }
-
-    public void moveActiveTokenForward() {
-        for (int i = 0; i < tokens.size(); i++) {
-            String nextToken = tokens.get(i);
-            System.out.println(nextToken);
-        }
-    }
-
-    public void moveActiveTokenBackwards() { 
-        for (int i = tokens.size()-1; i >= 0; i--) {
-          String previousToken = tokens.get(i);
-          System.out.println(previousToken);
-        }
-    }
-
-    public void getSpecialTokenOfEnd() {
-          for (int i = 0; i < tokens.size(); i++) {
-            String endToken = tokens.get(i);
-            System.out.println(endToken);
-        }
+      if (!isActiveToken()) {
+        setActiveToken(true);
+        System.out.println(tokens.get(0));
+      }
     }
 
     public void removeWhiteSpaceBeforeNextToken() {
-        for (int i = 0; i < tokens.size(); i++) {
-          String endToken = tokens.get(i);
-          System.out.println(endToken);
-        }
+      ArrayList<String> tokens = tokenizer.getTokens();
+      for (int i = 0; i < tokens.size(); i++) 
+        System.out.println(tokens.get(i));
+    } 
+
+    public void moveActiveTokenForward() {
+      ArrayList<String> tokens = tokenizer.getTokens();
+      String nextToken = activeToken;
+      for (int i = 0; i < tokens.size(); i++) {
+        if (isActiveToken() && hasMoreTokens()) 
+          activeToken = tokens.get(i);
+          System.out.println(nextToken); 
+      }
+    }
+
+    public Tokenizer moveActiveTokenBackwards() {
+      ArrayList<String> tokens = tokenizer.getTokens();
+      for (int i = 0; i < tokens.size(); i++) {
+        if (isActiveToken() && hasMoreTokens()) 
+          String previousToken = activeToken;
+          activeToken = tokens.get(i);
+          System.out.println(previousToken);
+      }
+    }
+
+    public Tokenizer getEndToken() {
+      ArrayList<String> tokens = tokenizer.getTokens();
+      for (int i = 0; i < tokens.size(); i++) {
+        if (isActiveToken() && !hasMoreTokens()) 
+          System.out.println(tokens.get(i-1));
+      }
+    }
+
+    public void getLongestMatch() {
+      
     }
 
     public boolean hasMoreTokens() {
-      String lastToken = tokens[tokens.length - 1];
-      for (int i = 0; i < tokens.length; i++) {
-          if (lastToken) {
-              return true;
-          }
+      ArrayList<String> tokens = tokenizer.getTokens();
+      for (int i = 0; i < tokens.size(); i++) {
+        if (tokens.isEmpty()) return true;
       }
       return false;
     }
-}
-
+  }

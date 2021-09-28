@@ -9,62 +9,33 @@ public class LexicalGrammar {
     this.description = description;
   }
 
-  public LexicalGrammar() {
-
+  public String getDescription() {
+    return description;
   }
 
   public String literalRegex() {
-    description = "([a-zåäöA-ZÅÄÖ]+)";
+    description = "([a-zåäöA-ZÅÄÖ]*)\\s*(.*)(!*)\\?*(:*)(;*)(,*)";
     return description;
   }
 
-  public String integerCharacter() {
-    description = "([0-9]+)";
-    return description;
-  }
-
-  public String dotLiteral() {
+  public String arithmeticRegex() {
     description = "";
     return description;
   }
 
-  public String floatLiteral() {
+  public String javaRegex() {
     description = "";
     return description;
   }
 
-  public String additionLiteral() {
-    description = "";
-    return description;
-  }
-
-  public String multiplicationRegex() {
-    description = "";
-    return description;
-  }
-
-  public String decimalIntegerLiteral() {
-    description = "";
-    return description;
-  }
-
-  public String hexadecimalRegex() {
-    description = "";
-    return description;
-  }
-
-  public String endRegex() {
-    description = "$";
-    return description;
-  }
-
-  public String commentsRegex() {
+  public String javaScriptRegex() {
     description = "";
     return description;
   }
 
   public String whiteSpaceRegex() {
-    description = "(\s+)";
+    description = "";
     return description;
   }
 }
+
