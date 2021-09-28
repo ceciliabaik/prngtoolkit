@@ -7,21 +7,23 @@ import java.util.Arrays;
  * Tokenizer is a program that performs lexical analysis, which 
  * means a character-by-character evaluation of the input source 
  * code and identification of the tokens.
+ * 
+ * @author Cecilia Baik
  */
 public class Tokenizer {
     private ArrayList<TokenType> tokenTypeList;
-    ArrayList<String> tokens = new ArrayList<>(Arrays.asList("Meningen", "består", "av", "ord", "."));
-    private String string;
+    private String inputStream;
     private boolean isActiveToken;
-    private String activeToken;
+    ArrayList<String> tokens = new ArrayList<>(Arrays.asList("Meningen", "består", "av", "ord", "."));
 
-    public Tokenizer(ArrayList<TokenType> tokenTypeList, String string) {
+    public Tokenizer(ArrayList<TokenType> 
+        tokenTypeList, String inputStream) {
       this.tokenTypeList = tokenTypeList;
-      this.string = string;
+      this.inputStream = inputStream;
     }
 
-    public String getString() {
-        return string;
+    public String getInputStream() {
+        return inputStream;
     }
 
     public boolean isActiveToken() {
@@ -33,69 +35,53 @@ public class Tokenizer {
     }
 
     public void performTokenization() {
-      // TODO: ConvertTextStringIntoTokens.
+      generateTokens();
     }
 
-    public void evaluator() {
-      String[] string = tokenizer.getString();
-      for (int i = 0; i < string.length; i++) 
-        splitIntoTokensWithDelimiter();
+    public void performEvaluation() {
+      for (int i = 0; i < inputStream.length(); i++) 
+        delimitInputStream();
     }
 
-    private String[] splitIntoTokensWithDelimiter() {
-      return string.split(" ");
+    private String[] delimitInputStream() {
+      return inputStream.split(" ");
+    }
+
+    public void removeWhiteSpace() {
+    }
+
+    public void removeComment() {
+    }
+
+    public void generateTokens() {
+      defineLongestMatch();
+    }
+
+    private void defineLongestMatch() {  
     }
 
     public void getInitialActiveToken() {
-      if (!isActiveToken()) {
+      if (!isActiveToken()) 
         setActiveToken(true);
         System.out.println(tokens.get(0));
-      }
     }
-
-    public void removeWhiteSpaceBeforeNextToken() {
-      ArrayList<String> tokens = tokenizer.getTokens();
-      for (int i = 0; i < tokens.size(); i++) 
-        System.out.println(tokens.get(i));
-    } 
 
     public void moveActiveTokenForward() {
-      ArrayList<String> tokens = tokenizer.getTokens();
-      String nextToken = activeToken;
-      for (int i = 0; i < tokens.size(); i++) {
-        if (isActiveToken() && hasMoreTokens()) 
-          activeToken = tokens.get(i);
-          System.out.println(nextToken); 
-      }
+      for (int i = 0; i < tokens.size(); i++)
+        System.out.println(tokens.get(i)); 
     }
 
-    public Tokenizer moveActiveTokenBackwards() {
-      ArrayList<String> tokens = tokenizer.getTokens();
-      for (int i = 0; i < tokens.size(); i++) {
-        if (isActiveToken() && hasMoreTokens()) 
-          String previousToken = activeToken;
-          activeToken = tokens.get(i);
-          System.out.println(previousToken);
-      }
+    public void moveActiveTokenBackwards() {
+      for (int i = tokens.size() -1; i >= 0; i--)
+      System.out.println(tokens.get(i));
     }
 
-    public Tokenizer getEndToken() {
-      ArrayList<String> tokens = tokenizer.getTokens();
-      for (int i = 0; i < tokens.size(); i++) {
-        if (isActiveToken() && !hasMoreTokens()) 
-          System.out.println(tokens.get(i-1));
-      }
+    public void getEndToken() {
+      for (int i = tokens.size(); i >= 0; i--)
+      System.out.println(tokens.get(tokens.size() -1));
     }
 
-    public void getLongestMatch() {
-      
-    }
-
-    public boolean hasMoreTokens() {
-      ArrayList<String> tokens = tokenizer.getTokens();
-      for (int i = 0; i < tokens.size(); i++) {
-        if (tokens.isEmpty()) return true;
-      }
-      return false;
+    public boolean hasMoreTokens(ArrayList<String> tokens) {
+      return tokens.isEmpty();
     }
   }

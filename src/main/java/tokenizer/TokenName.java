@@ -7,5 +7,6 @@ public enum TokenName {
     OPERATOR,
     LITERAL,
     COMMENT,
-    NUMBER
+    NUMBER,
+    DIGIT
 }
