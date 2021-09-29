@@ -1,4 +1,4 @@
-package tokenizer;
+package tokenizer.error;
 
 public class SourceCodeError {
 

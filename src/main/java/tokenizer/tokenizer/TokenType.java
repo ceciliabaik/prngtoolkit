@@ -1,4 +1,4 @@
-package tokenizer;
+package tokenizer.tokenizer;
 
 public enum TokenType {
     WORD,
@@ -7,5 +7,6 @@ public enum TokenType {
     NUMBER,
     ADDITION,
     MULTIPLICATION,
-    END
+    END,
+    NEWLINE
 }

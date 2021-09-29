@@ -1,7 +1,11 @@
+tokenizer/LexicalGrammar.java
+ tokenizer.LexicalGrammar
 tokenizer/TokenType.java
  tokenizer.TokenType
 tokenizer/PublicInterface.java
  tokenizer.PublicInterface
+tokenizer/Lexeme.java
+ tokenizer.Lexeme
 tokenizer/TokenName.java
  tokenizer.TokenName
 tokenizer/SearchPattern.java

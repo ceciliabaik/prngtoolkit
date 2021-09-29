@@ -2,6 +2,7 @@ package tokenizer;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
+import tokenizer.tokenizer.Tokenizer;
 
 public class WordAndDotGrammarTest {
     private Tokenizer tokenizer;

@@ -1,4 +1,4 @@
-package tokenizer;
+package tokenizer.tokenizer;
 
 public enum TokenName {
     IDENTIFIER,

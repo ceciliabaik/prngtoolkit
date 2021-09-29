@@ -1,4 +1,4 @@
-package tokenizer;
+package tokenizer.tokenizer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,10 +47,17 @@ public class Tokenizer {
       return inputStream.split(" ");
     }
 
-    public void removeWhiteSpace() {
+    public String removeWhiteSpace() {
+      return inputStream.trim();
     }
 
-    public void removeComment() {
+    public String[] removeComment() {
+      String singleLineComment = "//";
+      String startComment = "/**";
+      String endComment = "*/";
+      if (singleLineComment|| startComment) {
+        inputStream.includes(singleLineComment);
+      }
     }
 
     public void generateTokens() {
@@ -58,6 +65,7 @@ public class Tokenizer {
     }
 
     private void defineLongestMatch() {  
+      String consumeInputStream;
     }
 
     public void getInitialActiveToken() {

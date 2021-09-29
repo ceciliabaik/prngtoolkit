@@ -1,5 +1,6 @@
-// package tokenizer.finiteStateMachine;
+package tokenizer.finiteStateMachine;
 
-// public interface State {
-//     void traverseState(Context context, String string);
-// }
+public interface State {
+  void performTransition();
+  void foundCharacterMatch();
+}
