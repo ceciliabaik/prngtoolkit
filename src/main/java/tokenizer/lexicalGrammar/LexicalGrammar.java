@@ -1,14 +1,14 @@
 package tokenizer.lexicalGrammar;
 
-import tokenizer.tokenizer.TokenType;
-
 public class LexicalGrammar {
-  private TokenType tokenType;
-  private String description;
+  private final String description;
 
-  public LexicalGrammar(TokenType tokenType,String description) {
-    this.tokenType = tokenType;
+  public LexicalGrammar(String description) {
     this.description = description;
+  }
+
+  public String getDescription() {
+    return description;
   }
 }
 
