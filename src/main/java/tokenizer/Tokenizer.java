@@ -1,6 +1,9 @@
 package tokenizer;
 
-import tokenizer.lexicalGrammar.EnumMapRegex;
+import tokenizer.interpreter.RegularExpression;
+import tokenizer.interpreter.SourceCode;
+import tokenizer.model.Lexeme;
+import tokenizer.model.Token;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,19 +15,18 @@ import java.util.Arrays;
  * 
  * @author Cecilia Baik
  */
-public class Tokenizer {
-  private ArrayList<EnumMapRegex.TokenType> tokenTypeList;
-  private final String inputStream;
+public class Tokenizer implements PublicInterface {
+  // private ArrayList<EnumMapRegex.TokenType> tokenTypeList;
+  private SourceCode sourceCode;
   private boolean isActiveToken;
+  private Scanner scanner;
+  private Token token;
+  private Lexeme lexemeChar;
   ArrayList<String> tokens = new ArrayList<>(Arrays.asList("Meningen", "består", "av", "ord", "."));
 
-  public Tokenizer(ArrayList<EnumMapRegex.TokenType> tokenTypeList, String inputStream) {
-    this.tokenTypeList = tokenTypeList;
-    this.inputStream = inputStream;
-  }
-
-  public String getInputStream() {
-    return inputStream;
+  public Tokenizer(SourceCode sourceCode, Lexeme lexemeChar, Token token) {
+    this.sourceCode = sourceCode;
+    this.lexemeChar = lexemeChar;
   }
 
   public boolean isActiveToken() {
@@ -35,36 +37,34 @@ public class Tokenizer {
     isActiveToken = activeToken;
   }
 
-  public void performTokenization() {
-    categorizeIntoTokens();
+  // Categorize into tokens.
+  public boolean performTokenization(LiteralExpression literalExpression) {
+    getInitActiveToken();
+    while (!sourceCode.getInputStream().isEmpty()) {
+      if (lexemeChar.hasWhiteSpace()) {
+        ignoreWhiteSpace();
+        continue;
+      } else if (literalExpression.interpret()) {
+        return token(Token.TokenType.LITERAL, token.getValue());
+      } else if (digitExpression.interpret()) {
+        Token token = token(Token.TokenType.LITERAL, token.getValue());
+      }
+    }
+    return token(Token.TokenType.END, token.getValue());
   }
 
-  public void performEvaluation() {
-    for (int i = 0; i < inputStream.length(); i++) 
-      delimitInputStream();
+  private String ignoreWhiteSpace() {
+    return sourceCode.getInputStream().trim();
   }
 
-  private String[] delimitInputStream() {
-    return inputStream.split(" ");
-  }
-
-  public String removeWhiteSpace() {
-    return inputStream.trim();
-  }
-
-  public String[] removeComment() {
-    String singleLineComment = "//";
-    String startComment = "/**";
-    String endComment = "*/";
-  }
-
-  public void categorizeIntoTokens() {
-  }
-
-  public void getInitialActiveToken() {
-    if (!isActiveToken()) 
+  private String getInitActiveToken() {
+    if (!isActiveToken()) {
       setActiveToken(true);
-      System.out.println(tokens.get(0));
+      char firstLexemeChar = sourceCode.getInputStream().charAt(0);
+      return Character.toString(firstLexemeChar);
+    } else if (sourceCode.getInputStream().isEmpty()) {
+      throw new NullPointerException("Input stream is empty.");
+    }
   }
 
   public void moveActiveTokenForward() {
@@ -77,12 +77,18 @@ public class Tokenizer {
       System.out.println(tokens.get(i));
   }
 
-  public void getEndToken() {
-    for (int i = tokens.size(); i >= 0; i--)
-      System.out.println(tokens.get(tokens.size() -1));
+  public boolean getEndToken() {
+    if (searchPattern.getInputStream().indexOf(0) > searchPattern.getInputStream().length() -1) {
+      return token(tokenType.END, token.getValue());
+    }
+    return false;
   }
 
   public boolean hasMoreTokens(ArrayList<String> tokens) {
-    return tokens.isEmpty();
+    if (tokens.isEmpty()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

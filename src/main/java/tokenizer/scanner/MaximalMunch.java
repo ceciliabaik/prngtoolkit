@@ -1,7 +1,10 @@
 package tokenizer.scanner;
 
 public class MaximalMunch {
-  private void defineLongestMatch() {  
-    String consumeInputStream;
+
+  public void getLongestMatch() {
+  }
+
+  public void consumeInput() {  
   }
 }
