@@ -22,9 +22,13 @@ public class Evaluator {
   }
 
   public void performEvaluation() {
-    for (int i = 0; i < lexeme.length(); i++);
+    for (int i = 0; i < lexeme.length(); i++) {
+      return getToken();
+    }
      
   }
+
+  public void identifyToken();
 
   public void detectIllegalCharacters() {
   }

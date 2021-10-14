@@ -1,5 +1,5 @@
 package tokenizer.interpreter;
 
 public interface RegularExpression {
-  public boolean interpret(SourceCode context);
+  public boolean interpret(Interpreter context);
 }

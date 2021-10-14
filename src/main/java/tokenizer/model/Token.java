@@ -1,23 +1,23 @@
 package tokenizer.model;
 
 public class Token {
-  private TokenType name;
+  private Type name;
   private int value;
 
-  public Token(TokenType name, int value) {
+  public enum Type {
+    IDENTIFIER, KEYWORD, SEPARATOR, OPERATOR, LITERAL, COMMENT
+  }
+
+  public Token(Type name, int value) {
     this.name = name;
     this.value = value;
   }
 
-  public enum TokenType {
-    IDENTIFIER, KEYWORD, SEPARATOR, OPERATOR, LITERAL, COMMENT, END
-  }
-
-  public TokenType getName() {
+  public Type getName() {
     return name;
   }
 
-  public void setName(TokenType name) {
+  public void setName(Type name) {
     this.name = name;
   }
 

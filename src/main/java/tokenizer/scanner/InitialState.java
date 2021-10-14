@@ -1,9 +1,7 @@
 package tokenizer.scanner;
 
-public class InitialState implements FiniteStateMachine {
-  private ScannerContext scanner;
-  private RegexPattern regexPattern;
-
+public class InitialState implements FiniteStateAutomaton {
+  private String inputStream;
   private static final InitialState instance = new InitialState();
 
   public InitialState() {}
@@ -13,24 +11,26 @@ public class InitialState implements FiniteStateMachine {
   }
 
   @Override
-  public void performTransition() {
-    Character firstChar = this.startOnFirstChar();
-    Character lastChar = inputStream.charAt(inputStream.length() -1);
-    for (int i = 0; i < inputStream.length(); i++) {
-      if (firstChar.equals(lastChar)) {
-        scanner.matchWithPattern();
-        scanner.setState(AcceptState.instance());
+  public void transition(ScannerContext context) {
+    while (!inputStream.isEmpty()) {
+      char firstChar = inputStream.charAt(0);
+      if (Character.isWhitespace(firstChar)) {
+        removeWhiteSpaceChar();
+        continue;
+      } else if (firstChar == lastChar()) {
+        context.setState(AcceptState.instance());
       } else {
-        scanner.setState(NextState.instance());
+        context.setState(NextState.instance());
       }
     }
-  }  
-  
-  private Character startOnFirstChar() {
-    if (scanner.getInputStream().isEmpty()) {
-      throw new NullPointerException("Input stream is empty.");
-    } else {
-      return scanner.getInputStream().charAt(0);
-    }
+  }
+
+  private char lastChar() {
+    return inputStream.charAt(inputStream.length() -1);
+  }
+
+  private String removeWhiteSpaceChar() {
+    return inputStream.trim();
   }
 }
+

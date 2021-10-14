@@ -1,37 +1,43 @@
 package tokenizer.scanner;
 
-public class NextState implements FiniteStateMachine {
-  private RegexPattern regexPattern;
-  private ScannerContext scanner;
-  
+public class NextState implements FiniteStateAutomaton {
+  private MaximalMunch longestMatch;
+  private String inputStream;
+
   private static NextState instance = new NextState();
 
-  private NextState() {
-  }
+  private NextState() {}
 
   public static NextState instance() {
     return instance;
   }
 
   @Override
-  public void performTransition() {
+  public void transition(ScannerContext context) {
     int i = 1;
     while (i < inputStream.length()) {
-      String nextChar = this.getNextChar();
-      if (nextChar.matches(regexPattern.literal())) {
-        scanner.setState(this);
-      } else if (nextChar.matches(regexPattern.digit())) {
-        scanner.setState(this);
-      } else if (nextChar.matches(regexPattern.digit())) {
-        scanner.setState(this);
-      } else if (nextChar.matches(regexPattern.digit())) {
-        scanner.setState(AcceptState.instance());
+      int nextChar = i+=1;
+      if (nextChar == " ") {
+       splitIntoSubstring();
+       longestMatch.getLongestMatch();
+       context.setState(AcceptState.instance());
+      } else {
+        removeWhiteSpaceChar();
+        context.setState(this);
+        transition(context);
       }
     }
   }
 
-  public String getNextChar() {
-    for (int i = 1; i < inputStream.length(); i++) 
-      return Character.toString(inputStream.charAt(i + 1));
+  private char lastChar() {
+    return inputStream.charAt(inputStream.length() -1);
+  }
+
+  private String removeWhiteSpaceChar() {
+    return inputStream.trim();
+  }
+
+  private String[] splitIntoSubstring() {
+    return inputStream.split(" ");
   }
 }

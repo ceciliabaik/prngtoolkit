@@ -1,9 +1,10 @@
 package tokenizer.scanner;
 
-public class AcceptState implements FiniteStateMachine {
+import tokenizer.model.Lexeme;
+
+public class AcceptState implements FiniteStateAutomaton {
+  private String inputStream;
   private NextState nextState;
-  private RegexPattern regexPattern;
-  private Lexeme lexeme;
   private static AcceptState instance = new AcceptState();
 
   private AcceptState() {}
@@ -13,12 +14,14 @@ public class AcceptState implements FiniteStateMachine {
   }
 
   @Override
-  public void performTransition() {
-    int i = 1;
-    while (i < inputStream.length()) {
-      String acceptChar = nextState.getNextChar();
+  public void transition(ScannerContext context) {
+    while (inputStream.length() == inputStream.length() -1) {
+      char acceptChar;
       if (acceptChar.matches(regexPattern.literal())) {
-        this.acceptString();
+        acceptString();
+        createLexeme();
+      } else {
+
       }
     }
   }
@@ -26,8 +29,9 @@ public class AcceptState implements FiniteStateMachine {
   public void acceptString() {
   }
 
-  private void createLexeme() {
-    return new Lexeme();
+  private Lexeme createLexeme() {
+    Lexeme lexeme = new Lexeme();
+    return lexeme;
   }
 
   public void createEnumMapRegex() {

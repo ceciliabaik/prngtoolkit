@@ -1,21 +1,39 @@
 package tokenizer.model;
 
 public class Lexeme {
-  private String unit;
+  private Type name;
+  private String value;
 
-  public Lexeme(String unit) {
-    this.unit = unit;
+  public enum Type {
+    IDENTIFIER, KEYWORD, SEPARATOR, OPERATOR, LITERAL, COMMENT
   }
 
-  public String getUnit() {
-    return unit;
+  public Lexeme(Type name, String value) {
+    this.name = name;
+    this.value = value;
   }
 
-  public void setUnit(String unit) {
-    this.unit = unit;
+  public Type getName() {
+    return name;
   }
 
-  public boolean hasWhiteSpace() {
-    return null;
+  public void setName(Type name) {
+    this.name = name;
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
+  }
+
+  @Override
+  public String toString() {
+    return "Lexeme{" +
+            "name=" + name +
+            ", value='" + value + '\'' +
+            '}';
   }
 }

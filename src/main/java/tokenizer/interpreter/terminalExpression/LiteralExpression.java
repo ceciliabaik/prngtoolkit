@@ -1,6 +1,6 @@
 package tokenizer.interpreter.terminalExpression;
 
-import tokenizer.interpreter.SourceCode;
+import tokenizer.interpreter.Interpreter;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,7 +18,7 @@ public class LiteralExpression extends TerminalExpression {
   }
 
   @Override
-  public boolean interpret(SourceCode context) {
+  public boolean interpret(Interpreter context) {
     if (context.getInputStream().isEmpty()) {
       throw new NullPointerException("Input stream is empty.");
     } else {

@@ -1,34 +1,21 @@
 package tokenizer.scanner;
 
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-
 public class ScannerContext {
-  private FiniteStateMachine state;
-  private String inputStream;
-  private String regexPattern;
+  private FiniteStateAutomaton state;
 
-  public ScannerContext(FiniteStateMachine state, String inputStream, String regexPattern) {
-    this.state = state;
-    this.inputStream = inputStream;
-    this.regexPattern = regexPattern;
+  public ScannerContext() {
+    state = InitialState.instance();
   }
 
-  public FiniteStateMachine getState() {
+  public FiniteStateAutomaton getState() {
     return state;
   }
 
-  public void setState(FiniteStateMachine state) { 
+  public void setState(FiniteStateAutomaton state) {
     this.state = state;
   }
 
-  public String getInputStream() {
-    return inputStream;
-  }
-
-  public Boolean matchWithPattern() {
-    Pattern pattern = Pattern.compile(regexPattern);
-    Matcher matcher = pattern.matcher(inputStream);
-    return matcher.matches();
+  public void transition() {
+    state.transition(this);
   }
 }

@@ -1,7 +1,7 @@
 package tokenizer.interpreter.nonTerminalExpression;
 
 import tokenizer.interpreter.RegularExpression;
-import tokenizer.interpreter.SourceCode;
+import tokenizer.interpreter.Interpreter;
 
 import java.util.List;
 
@@ -22,6 +22,6 @@ public class MultiplicationExpression extends NonTerminalExpression {
     }
 
   @Override
-  public boolean interpret(SourceCode context) {
+  public boolean interpret(Interpreter context) {
   }
 }

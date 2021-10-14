@@ -19,8 +19,10 @@ public class DigitExpression extends TerminalExpression {
 
   @Override
   public boolean interpret(SourceCode searchPattern) {
-    Pattern pattern = Pattern.compile(searchPattern.getInputStream());
-    Matcher matcher = pattern.matcher(getDigitChar());
-    return matcher.matches();
+    if () {
+      Pattern pattern = Pattern.compile(searchPattern.getInputStream());
+      Matcher matcher = pattern.matcher(getDigitChar());
+      return matcher.matches();
+    }
   }
 }

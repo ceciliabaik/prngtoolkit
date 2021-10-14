@@ -1,7 +1,7 @@
 package tokenizer.interpreter.nonTerminalExpression;
 
 import tokenizer.interpreter.RegularExpression;
-import tokenizer.interpreter.SourceCode;
+import tokenizer.interpreter.Interpreter;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -20,7 +20,7 @@ public class EndExpression extends NonTerminalExpression {
   }
 
   @Override
-  public boolean interpret(SourceCode context) {
+  public boolean interpret(Interpreter context) {
     for (RegularExpression expression : getSubClassExpressions()) {
       Pattern pattern = Pattern.compile(context.getInputStream());
       Matcher matcher = pattern.matcher(endChar());

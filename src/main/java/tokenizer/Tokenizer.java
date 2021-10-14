@@ -1,7 +1,8 @@
 package tokenizer;
 
-import tokenizer.interpreter.SourceCode;
+import tokenizer.interpreter.Interpreter;
 import tokenizer.model.Token;
+import tokenizer.scanner.Scanner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,12 +16,12 @@ import java.util.Arrays;
  * @author Cecilia Baik
  */
 public class Tokenizer implements PublicInterface {
-  private final SourceCode sourceCode;
+  private Scanner scanner;
+  private Interpreter interpreter;
   private final ArrayList<String> tokens;
   private boolean isActiveToken;
 
-  public Tokenizer(SourceCode sourceCode, ArrayList<String> tokens) {
-    this.sourceCode = sourceCode;
+  public Tokenizer(, ArrayList<String> tokens) {
     this.tokens = new ArrayList<>(Arrays.asList("Meningen", "består", "av", "ord", "."));
   }
 
@@ -32,7 +33,6 @@ public class Tokenizer implements PublicInterface {
     isActiveToken = activeToken;
   }
 
-  // Categorize into tokens.
   public void performTokenization() {
     getInitActiveToken();
     while (!sourceCode.getInputStream().isEmpty()) {
@@ -47,8 +47,12 @@ public class Tokenizer implements PublicInterface {
     return getToken(Token.TokenType.END, token.getValue());
   }
    
-  private String ignoreWhiteSpace() {
+  private String ignoreWhiteSpaces() {
     return sourceCode.getInputStream().trim();
+  }
+
+  private void removeComments() {
+
   }
 
   private String getInitActiveToken() {
@@ -81,7 +85,8 @@ public class Tokenizer implements PublicInterface {
 
   public String getEndToken() {
     if (!hasMoreTokens()) 
-      return Character.toString(sourceCode.getInputStream().charAt(sourceCode.getInputStream().length() -1));
+      return Character.toString(sourceCode.getInputStream().
+      charAt(sourceCode.getInputStream().length() -1));
   }
   
   public boolean hasMoreTokens() {

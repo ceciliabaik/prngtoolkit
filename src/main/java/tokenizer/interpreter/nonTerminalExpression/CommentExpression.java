@@ -21,5 +21,8 @@ public class CommentExpression extends NonTerminalExpression {
 
   @Override
   public boolean interpret(SourceCode context) {
+    if () {
+      
+    }
   }
 }
