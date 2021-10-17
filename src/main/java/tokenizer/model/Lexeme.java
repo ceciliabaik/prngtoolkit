@@ -1,39 +1,41 @@
 package tokenizer.model;
 
 public class Lexeme {
-  private Type name;
   private String value;
 
-  public enum Type {
-    IDENTIFIER, KEYWORD, SEPARATOR, OPERATOR, LITERAL, COMMENT
-  }
-
-  public Lexeme(Type name, String value) {
-    this.name = name;
+  public Lexeme(String value) {
     this.value = value;
-  }
-
-  public Type getName() {
-    return name;
-  }
-
-  public void setName(Type name) {
-    this.name = name;
   }
 
   public String getValue() {
     return value;
   }
 
-  public void setValue(String value) {
-    this.value = value;
+  public boolean isInteger(String character) {
+    return character.equals("[0-9]");
   }
 
-  @Override
-  public String toString() {
-    return "Lexeme{" +
-            "name=" + name +
-            ", value='" + value + '\'' +
-            '}';
+  public boolean isFloat(String character) {
+    return character.equals("^[0-9]+\\.[0-9]+");
+  }
+
+  public boolean isSeparator(String character) {
+    return character.equals("^\\.");
+  }
+
+  public boolean isOperator(String character) {
+    return character.equals("^[+-*/]");
+  }
+
+  public boolean isLetter(String value) {
+    return value.equals("[a-zA-Z]");
+  }
+
+  private boolean isComment() {
+    return .equals(" ");
+  }
+
+  private boolean isWhiteSpace(Character character) {
+    return character.equals("\\s+","");
   }
 }

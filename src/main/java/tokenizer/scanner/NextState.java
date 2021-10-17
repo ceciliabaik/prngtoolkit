@@ -2,7 +2,6 @@ package tokenizer.scanner;
 
 public class NextState implements FiniteStateAutomaton {
   private MaximalMunch longestMatch;
-  private String inputStream;
 
   private static NextState instance = new NextState();
 
@@ -13,27 +12,24 @@ public class NextState implements FiniteStateAutomaton {
   }
 
   @Override
-  public void transition(ScannerContext context) {
+  public void transition(ScannerContext context, String sourceCode) {
     int i = 1;
     while (i < inputStream.length()) {
-      int nextChar = i+=1;
-      if (nextChar == " ") {
-       splitIntoSubstring();
-       longestMatch.getLongestMatch();
-       context.setState(AcceptState.instance());
+      for (int j = 0; j < inputStream.length(); j++) {
+        char nextChar = inputStream.charAt(j +1);
+      } if (Character.isWhitespace(nextChar)) {
+          splitIntoSubstring();
+          longestMatch.getLongestMatch();
+          context.setState(AcceptState.instance());
+          ignoreWhiteSpaceChar();
       } else {
-        removeWhiteSpaceChar();
-        context.setState(this);
-        transition(context);
+          context.setState(this);
+          transition(context);
       }
     }
   }
 
-  private char lastChar() {
-    return inputStream.charAt(inputStream.length() -1);
-  }
-
-  private String removeWhiteSpaceChar() {
+  private String ignoreWhiteSpaceChar() {
     return inputStream.trim();
   }
 

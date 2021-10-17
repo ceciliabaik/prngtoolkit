@@ -1,6 +1,6 @@
 package tokenizer.interpreter;
 
-import tokenizer.Tokenizer;
+import tokenizer.evaluator.Tokenizer;
 
 public class Interpreter {
   private Tokenizer tokenizer;

@@ -2,13 +2,13 @@ package tokenizer.model;
 
 public class Token {
   private Type name;
-  private int value;
+  private String value;
 
   public enum Type {
-    IDENTIFIER, KEYWORD, SEPARATOR, OPERATOR, LITERAL, COMMENT
+    IDENTIFIER, KEYWORD, SEPARATOR, OPERATOR, LITERAL, COMMENT, INTEGER, END
   }
 
-  public Token(Type name, int value) {
+  public Token(Type name, String value) {
     this.name = name;
     this.value = value;
   }
@@ -21,11 +21,11 @@ public class Token {
     this.name = name;
   }
 
-  public int getValue() {
+  public String getValue() {
     return value;
   }
 
-  public void setValue(int value) {
+  public void setValue(String value) {
     this.value = value;
   }
 

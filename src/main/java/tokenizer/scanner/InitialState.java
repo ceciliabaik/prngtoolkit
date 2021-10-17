@@ -1,7 +1,6 @@
 package tokenizer.scanner;
 
 public class InitialState implements FiniteStateAutomaton {
-  private String inputStream;
   private static final InitialState instance = new InitialState();
 
   public InitialState() {}
@@ -11,11 +10,12 @@ public class InitialState implements FiniteStateAutomaton {
   }
 
   @Override
-  public void transition(ScannerContext context) {
-    while (!inputStream.isEmpty()) {
-      char firstChar = inputStream.charAt(0);
+  public void transition(ScannerContext context, String sourceCode) {
+    sourceCode = context.getSourceCode();
+    while (!sourceCode.isEmpty()) {
+      char firstChar = sourceCode.charAt(0);
       if (Character.isWhitespace(firstChar)) {
-        removeWhiteSpaceChar();
+        ignoreWhiteSpaceChar();
         continue;
       } else if (firstChar == lastChar()) {
         context.setState(AcceptState.instance());
@@ -26,11 +26,11 @@ public class InitialState implements FiniteStateAutomaton {
   }
 
   private char lastChar() {
-    return inputStream.charAt(inputStream.length() -1);
+    return sourceCode.charAt(sourceCode.length() -1);
   }
 
-  private String removeWhiteSpaceChar() {
-    return inputStream.trim();
+  private String ignoreWhiteSpaceChar() {
+    return sourceCode.trim();
   }
 }
 

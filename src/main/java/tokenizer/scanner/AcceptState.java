@@ -20,21 +20,14 @@ public class AcceptState implements FiniteStateAutomaton {
       if (acceptChar.matches(regexPattern.literal())) {
         acceptString();
         createLexeme();
+        addToEnumMapRegex();
       } else {
-
+        // TODO: throw error IllegalCharacters();
       }
     }
   }
 
-  public void acceptString() {
-  }
-
-  private Lexeme createLexeme() {
-    Lexeme lexeme = new Lexeme();
-    return lexeme;
-  }
-
-  public void createEnumMapRegex() {
+  public void addToEnumMapRegex() {
     RegexPattern<TokenTypes, String> regexPatterns = new EnumMap<>(TokenTypes.class);
     regexPatterns.put(TokenTypes.WORD, regexPatterns.literalCharClass());
     System.out.println("Regex patterns" + regexPatterns);

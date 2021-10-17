@@ -15,9 +15,8 @@ public class AdditionExpression extends NonTerminalExpression {
     this.addition = addition;
   }
 
-  public String additionChar() {
-    addition = "+";
-    return addition;
+  public boolean isOperator() {
+    return
   }
 
   @Override
