@@ -1,125 +1,47 @@
 package tokenizer.evaluator;
 
 import tokenizer.model.Token;
-import tokenizer.model.Lexeme;
-import tokenizer.scanner.ScannerContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Tokenizer {
-  private Lexeme lexeme;
-  private ScannerContext scanner;
-  private final ArrayList<String> tokens;
-  private boolean isActiveToken;
+  private Token token;
+  private final ArrayList<String> symbolTable;
 
-  public Tokenizer(Lexeme lexeme) {
-    this.lexeme = lexeme;
-    tokens = new ArrayList<>(Arrays.asList());
-    scanner = new ScannerContext();
+  public Tokenizer(Token token) {
+    this.token = token;
+    symbolTable = new ArrayList<>(Arrays.asList());
   }
 
-  public boolean isActiveToken() {
-    return isActiveToken;
-  }
-
-  public void setActiveToken(boolean activeToken) {
-    isActiveToken = activeToken;
-  }
-
-  public void Tokenization(String sourceCode) {
-    while (!sourceCode.isEmpty()) {
-      for (int i = 0; i < sourceCode.length(); i++) {
-        scanner.transition(sourceCode);
-        if (lexeme.isLetter()) {
-          createToken(Token.Type.LITERAL, "Letter");
-        } else if (lexeme.isInteger()) {
-          createToken(Token.Type.LITERAL, "Letter");
-        } else if (lexeme.isOperator()) {
-          createToken(Token.Type.LITERAL, "Letter");
-        } else {
-          throw Exception("Detected illegal Token");
+  public void Tokenization() {
+    while (!lexemeList.isEmpty()) {
+      for (int i = 0; i < lexemeList.size(); i++) {
+        Lexeme currentLexeme = lexemeList.get(i);
+        if (String.isLiteral(currentLexeme)) {
+          createToken(Token.Type.LITERAL, token.getValue());
+        } else if (String.isInteger(currentLexeme)) {
+          createToken(Token.Type.INTEGER, token.getValue());
+        } else if (String.isFloat(currentLexeme)) {
+          createToken(Token.Type.FLOAT, token.getValue());
+        } else if (String.isOperator(currentLexeme)) {
+          createToken(Token.Type.OPERATOR, token.getValue());
+        } else if (String.isSeparator(currentLexeme)) {
+          createToken(Token.Type.SEPARATOR, token.getValue());
+        } else if (String.isEnd(currentLexeme)) {
+          createToken(Token.Type.END, token.getValue());
+        } else if (String.isInvalid(currentLexeme)){
+          throw new Exception("No lexical element matches " + token.getValue());
         }
-      }
-      // Add all tokens to tokenslist.
-    }
-  }
-
-  public void traverseTokens() {
-    int activeToken = 0;
-    for (int i = 0; i < tokens.size(); i++) {
-      while (!tokens.isEmpty() && !isActiveToken()) {
-        getInitialActiveToken();
       } 
-      if () {
-        moveActiveTokenForward();
-      } else if () {
-        moveActiveTokenForward();
-      } else {
-        getEndToken();
-      }
     }
-  }
-
-  private String getInitialActiveToken() {
-    return tokens.get(0);
-  }
-
-  public String moveActiveTokenForward() {
-    for (int i = 1; i < tokens.size(); i++) {
-      if (isActiveToken()) {
-        String activeToken = tokens.get(0;)
-        String nextToken = tokens.get(i +=1);
-        currentToken = nextToken;
-        setActiveToken(nextToken);
-        return nextToken;
-      }
-    }   
-  }
-
-  public String moveActiveTokenBackwards() {
-    for (int i = tokens.size() -1; i >= 0; i--) {
-      if (isActiveToken().equals(currentToken)) {
-        String activeToken = tokens.get(i);
-        String previousToken = tokens.get(i +=1);
-        activeToken = previousToken;
-        return previousToken.setActiveToken(true);
-      }
-    }
-  }
-
-  public void hasMoreTokens(String activeToken) {
-    if (isEndOfTokens() && activeToken > getEndToken()) 
-      createToken(Token.Type.END, "");
-  }
-
-  private String getEndToken() {
-    return tokens.get(tokens.size() -1);
-  }
-
-  private boolean isEndOfTokens() {
-    return tokens.isEmpty(); 
   }
 
   private Token createToken(Token.Type name, String value) {
     return new Token(name, value);
   }
 
-  public String ignoreWhiteSpace() {
-    return sourceCode.replaceAll("\\s+","");
-  }
-
-  public String ignoreComment() {
-    return sourceCode.replaceAll("\\s+","");
-  }
-
-  public String detectIllegalToken() {
-  }
-
-  private boolean isInvalidToken() {
-  }
-
-  public String delimitToken() {
-    return sourceCode.trim(",");
+  private ArrayList<String> addTokensToSymbolTable() {
+    return symbolTable.addAll();
   }
 }

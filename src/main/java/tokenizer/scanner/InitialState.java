@@ -1,6 +1,7 @@
 package tokenizer.scanner;
 
 public class InitialState implements FiniteStateAutomaton {
+  private String sourceCode
   private static final InitialState instance = new InitialState();
 
   public InitialState() {}
@@ -10,27 +11,43 @@ public class InitialState implements FiniteStateAutomaton {
   }
 
   @Override
-  public void transition(ScannerContext context, String sourceCode) {
-    sourceCode = context.getSourceCode();
+  public void transition(Scanner scanner) {
     while (!sourceCode.isEmpty()) {
-      char firstChar = sourceCode.charAt(0);
-      if (Character.isWhitespace(firstChar)) {
-        ignoreWhiteSpaceChar();
-        continue;
-      } else if (firstChar == lastChar()) {
-        context.setState(AcceptState.instance());
-      } else {
-        context.setState(NextState.instance());
+      for (int i = 0; i < sourceCode.length(); i++) {
+        char currentChar = sourceCode.charAt(i);
+        if (Character.isWhitespace(currentChar)) {
+          ignoreWhiteSpace();
+          continue;
+        } else if (Character.isComment(currentChar)) {
+          ignoreComment();
+          continue;
+        } else if (Character.isRegexMatch(currentChar)) {
+          scanner.setState(NextState.instance());
+        } else if (Character.isDefault(currentChar)) {
+          scanner.setState(AcceptState.instance());
+        } else {
+          throw new Exception("The input of source code is invalid.");
+        }
       }
     }
   }
 
-  private char lastChar() {
-    return sourceCode.charAt(sourceCode.length() -1);
+  private String ignoreWhiteSpace() {
+    return sourceCode.replaceAll("\\s+", "");
   }
 
-  private String ignoreWhiteSpaceChar() {
-    return sourceCode.trim();
+  private boolean isComment(char currentChar) {
+    if (currentChar == ("/*")) {
+      return true;
+    }
+  }
+
+  private String ignoreComment() {
+    return sourceCode.replaceAll( "//.*|(\"(?:\\\\[^\"]|\\\\\"|.)*?\")|(?s)/\\*.*?\\*/", "$1 " );
+  }
+
+  private boolean isRegexMatch() {
+
   }
 }
 

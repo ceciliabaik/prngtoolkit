@@ -5,7 +5,15 @@ public class Token {
   private String value;
 
   public enum Type {
-    IDENTIFIER, KEYWORD, SEPARATOR, OPERATOR, LITERAL, COMMENT, INTEGER, END
+    IDENTIFIER, 
+    KEYWORD, 
+    SEPARATOR, 
+    OPERATOR, 
+    LITERAL, 
+    COMMENT, 
+    INTEGER, 
+    END, 
+    FLOAT
   }
 
   public Token(Type name, String value) {

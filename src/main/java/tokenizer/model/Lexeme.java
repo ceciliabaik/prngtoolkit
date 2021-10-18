@@ -7,6 +7,8 @@ public class Lexeme {
     this.value = value;
   }
 
+  public Lexeme() {}
+
   public String getValue() {
     return value;
   }
@@ -27,7 +29,7 @@ public class Lexeme {
     return character.equals("^[+-*/]");
   }
 
-  public boolean isLetter(String value) {
+  public boolean isLiteral(String value) {
     return value.equals("[a-zA-Z]");
   }
 
@@ -38,4 +40,12 @@ public class Lexeme {
   private boolean isWhiteSpace(Character character) {
     return character.equals("\\s+","");
   }
+
+  private boolean isInvalid() {
+  }
+
+  private char lastChar() {
+    return sourceCode.charAt(sourceCode.length() -1);
+  }
+
 }

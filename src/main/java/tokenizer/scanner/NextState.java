@@ -12,28 +12,32 @@ public class NextState implements FiniteStateAutomaton {
   }
 
   @Override
-  public void transition(ScannerContext context, String sourceCode) {
-    int i = 1;
-    while (i < inputStream.length()) {
-      for (int j = 0; j < inputStream.length(); j++) {
-        char nextChar = inputStream.charAt(j +1);
-      } if (Character.isWhitespace(nextChar)) {
-          splitIntoSubstring();
-          longestMatch.getLongestMatch();
-          context.setState(AcceptState.instance());
-          ignoreWhiteSpaceChar();
+  public void transition(Scanner scanner) {
+    while (i < sourceCode.length()) {
+      char currentPositionOfChar = 1;
+      if (Character.isWhitespace(currentPositionOfChar)) {
+        longestMatch.getLongestMatch();
+        delimitIntoSubstring(sourceCode);
+        scanner.setState(AcceptState.instance());
+        ignoreWhiteSpaceChar(sourceCode);
       } else {
-          context.setState(this);
-          transition(context);
+        scanner.setState(this);
+        transition(this, sourceCode);
       }
     }
   }
 
-  private String ignoreWhiteSpaceChar() {
-    return inputStream.trim();
+  private String ignoreWhiteSpaceChar(String sourceCode) {
+    return sourceCode.trim();
   }
 
-  private String[] splitIntoSubstring() {
-    return inputStream.split(" ");
+  private String[] delimitIntoSubstring(String sourceCode) {
+    return sourceCode.split(" ");
+  }
+
+  public void addToEnumMapRegex() {
+    RegexPattern<TokenTypes, String> regexPatterns = new EnumMap<>(TokenTypes.class);
+    regexPatterns.put(TokenTypes.WORD, regexPatterns.literalCharClass());
+    System.out.println("Regex patterns" + regexPatterns);
   }
 }
