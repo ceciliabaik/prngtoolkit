@@ -1,14 +1,14 @@
-package tokenizer.interpreter;
+// package tokenizer.interpreter;
 
-import tokenizer.evaluator.Tokenizer;
+// import tokenizer.evaluator.Tokenizer;
 
-public class Interpreter {
-  private Tokenizer tokenizer;
+// public class Interpreter {
+//   private Tokenizer tokenizer;
 
-  public Interpreter() {
-  }
+//   public Interpreter() {
+//   }
 
-  public void traverseAbstractSyntaxTree() {
-    // Use the iterator pattern.
-  }
-}
+//   public void traverseAbstractSyntaxTree() {
+//     // Use the iterator pattern.
+//   }
+// }

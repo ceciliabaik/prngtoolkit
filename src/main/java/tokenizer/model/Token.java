@@ -5,15 +5,8 @@ public class Token {
   private String value;
 
   public enum Type {
-    IDENTIFIER, 
-    KEYWORD, 
-    SEPARATOR, 
-    OPERATOR, 
-    LITERAL, 
-    COMMENT, 
-    INTEGER, 
-    END, 
-    FLOAT
+    IDENTIFIER, KEYWORD, SEPARATOR, OPERATOR, 
+    LITERAL, COMMENT, WHITESPACE, INTEGER, END, FLOAT, 
   }
 
   public Token(Type name, String value) {
@@ -35,13 +28,5 @@ public class Token {
 
   public void setValue(String value) {
     this.value = value;
-  }
-
-  @Override
-  public String toString() {
-    return "Token{" +
-            "name=" + name +
-            ", value=" + value +
-            '}';
   }
 }

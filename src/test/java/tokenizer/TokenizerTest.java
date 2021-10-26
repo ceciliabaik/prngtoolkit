@@ -1,40 +1,40 @@
-package tokenizer;
+// package tokenizer;
 
-import org.junit.jupiter.api.Test;
+// import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+// import static org.junit.jupiter.api.Assertions.*;
 
-class TokenizerTest {
+// class TokenizerTest {
 
-    @Test
-    void isActiveToken() {
-    }
+//     @Test
+//     void isActiveToken() {
+//     }
 
-    @Test
-    void setActiveToken() {
-    }
+//     @Test
+//     void setActiveToken() {
+//     }
 
-    @Test
-    void performTokenization() {
-    }
+//     @Test
+//     void performTokenization() {
+//     }
 
-    @Test
-    void evaluator() {
-    }
+//     @Test
+//     void evaluator() {
+//     }
 
-    @Test
-    void splitIntoTokensWithDelimiter() {
-    }
+//     @Test
+//     void splitIntoTokensWithDelimiter() {
+//     }
 
-    @Test
-    void getActiveToken() {
-    }
+//     @Test
+//     void getActiveToken() {
+//     }
 
-    @Test
-    void nextToken() {
-    }
+//     @Test
+//     void nextToken() {
+//     }
 
-    @Test
-    void previousToken() {
-    }
-}
+//     @Test
+//     void previousToken() {
+//     }
+// }

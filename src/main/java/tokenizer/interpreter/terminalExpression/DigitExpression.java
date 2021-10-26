@@ -1,28 +1,28 @@
-package tokenizer.interpreter.terminalExpression;
+// package tokenizer.interpreter.terminalExpression;
 
-import tokenizer.interpreter.SourceCode;
+// import tokenizer.interpreter.SourceCode;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+// import java.util.regex.Matcher;
+// import java.util.regex.Pattern;
 
-public class DigitExpression extends TerminalExpression {
-  private int number;
+// public class DigitExpression extends TerminalExpression {
+//   private int number;
 
-  public DigitExpression(int number) {
-    super();
-    this.number = number;
-  }
+//   public DigitExpression(int number) {
+//     super();
+//     this.number = number;
+//   }
 
-  public String getDigitChar() {
-    return "[0-9]";
-  }
+//   public String getDigitChar() {
+//     return "[0-9]";
+//   }
 
-  @Override
-  public boolean interpret(SourceCode searchPattern) {
-    if () {
-      Pattern pattern = Pattern.compile(searchPattern.getInputStream());
-      Matcher matcher = pattern.matcher(getDigitChar());
-      return matcher.matches();
-    }
-  }
-}
+//   @Override
+//   public boolean interpret(SourceCode searchPattern) {
+//     if () {
+//       Pattern pattern = Pattern.compile(searchPattern.getInputStream());
+//       Matcher matcher = pattern.matcher(getDigitChar());
+//       return matcher.matches();
+//     }
+//   }
+// }

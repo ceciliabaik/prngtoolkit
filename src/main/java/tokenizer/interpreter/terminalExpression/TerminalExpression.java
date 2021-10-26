@@ -1,10 +1,10 @@
-package tokenizer.interpreter.terminalExpression;
+// package tokenizer.interpreter.terminalExpression;
 
-import tokenizer.interpreter.RegularExpression;
+// import tokenizer.interpreter.RegularExpression;
 
-public abstract class TerminalExpression implements RegularExpression {
+// public abstract class TerminalExpression implements RegularExpression {
 
-  public TerminalExpression() {
-    super();
-  }
-}
+//   public TerminalExpression() {
+//     super();
+//   }
+// }
