@@ -1,11 +1,7 @@
 package tokenizer.scanner;
 
-public class InitialState extends State {
+public class InitialState implements State {
   private static final InitialState instance = new InitialState();
-
-  public InitialState(Scanner scanner) {
-    super(scanner);
-  }
 
   private InitialState() {}
 
@@ -14,11 +10,10 @@ public class InitialState extends State {
   }
 
   @Override
-  public void updateState(Scanner scanner, char currentChar) {
+  public void updateState(Scanner scanner) {
     String sourceCode = scanner.getSourceCode();
-    for (int i = 0; i < sourceCode.length(); i++) {
-      currentChar = sourceCode.charAt(i);
-      scanner.setState(TransitionState.getInstance());
+    while (sourceCode.length() > 0) {
+      scanner.setActiveState(TransitionState.getInstance());
     }
   }
  }
