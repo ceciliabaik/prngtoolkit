@@ -1,6 +1,0 @@
-tokenizer/ConsoleUiTest.java
- tokenizer.ConsoleUiTest
-tokenizer/TokenizerTest.java
- tokenizer.TokenizerTest
-tokenizer/LexicalGrammarTest.java
- tokenizer.LexicalGrammarTest
