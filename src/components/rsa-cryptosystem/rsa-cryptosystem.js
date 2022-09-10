@@ -1,6 +1,6 @@
 function getTwoRandomIntegers () {
   let randomIntegerList = Array.from({length: 2}, () => 
-    Math.floor((Math.random() * 1000) + 100))
+    Math.floor((Math.random() * 100) + 1))
 
   return randomIntegerList
 }
@@ -16,27 +16,34 @@ function findPrimeNumbersByUsingPrimalityTest () {
   })  
 }
 
-function findCoPrimeNumberByUsing () {
+function findCoPrimeNumber () {
 }
+
+function getPublicExponent () {
+
+}
+
 
 function generateKey (primeNumberOne, primeNumberTwo) {
   let modulus = primeNumberOne * primeNumberTwo
-  let totient = (primeNumberOne - 1) * (primeNumberTwo - 1)
-  let publicExponent = 
-  let secretExponent = publicExponent - 1 % (primeNumberOne - 1) * (primeNumberTwo - 1) 
+  let greatestCommonDivisor = (primeNumberOne - 1) * (primeNumberTwo - 1)
+  // let publicExponent = 
+  let secretExponent = publicExponent - 1 % greatestCommonDivisor
   return (modulus, publicExponent, secretExponent)
 }
 
-function generatePublicKey (modulus, publicExponent) {
-  const publicKey = message % generateKey(modulus)
+function getPublicKey () {
+  const publicKey = generateKey(modulus).generateKey(publicExponent)
+  return publicKey
 }
 
-function generatePrivateKey (secretExponent, publicExponent, totient) {
-  return (secretExponent * publicExponent) % totient
-
+function getPrivateKey () {
+  const privateKey = generateKey(modulus).generateKey(secretExponent)
+  return privateKey
 }
 
-function convertStringCharactersIntoASCII (message) {
+
+function encodeStringCharIntoAscii (message) {
   let charAsciiList = []
 
   for (let i = 0; i < message.length; i++) {
@@ -47,16 +54,30 @@ function convertStringCharactersIntoASCII (message) {
   return charAsciiList
 }
 
+function encodeAsciiIntoStringChar (message) {
+  const asciiMessage = getDecryptedCipherText()
+  return asciiMessage.fromCharCode()
+}
+
+function generateLargeNumber () {
+  const cipherText = getEncryptedPlainText()
+  cipherText.reduce((previousValue, currentValue))
+}
+
 function encryptPlainText () {
-  const message = getPlainText()
+  const asciiMessage = getPlainText()
   const publicKey = getPublicKey()
-  const cipherText = Math.pow((message, publicKey(publicExponent)) % publicKey(modulus))
+  const cipherText = Math.pow(asciiMessage, publicKey(publicExponent)) % publicKey(modulus)
   return cipherText
 }
 
 function decryptCipherText () {
-  const message = getCipherText()
+  const cipherText = getCipherText()
   const privateKey = getPrivateKey()
-  const plainText = Math.pow((message, privateKey(secretExponent)) % privateKey(modulus))
+  const plainText = Math.pow(cipherText, privateKey(secretExponent)) % privateKey(modulus)
   return plainText
+}
+
+function toString () {
+  return getPlainText().toString()
 }
