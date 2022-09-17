@@ -2,25 +2,38 @@ package cryptosystem.key;
 
 import cryptosystem.primality.PrimalityTest;
 
+/**
+ * Represents a Miller-Rabin Primality Test.
+ * Generates large prime numbers.
+ *
+ * @version     1.0.0 17 September 2022
+ * @author      Cecilia Baik
+ */
 public class KeyPair {
     private final PrimalityTest primeNumberOne;
     private final PrimalityTest primeNumberTwo;
+    private int modulus;
 
-    public KeyPair(PrimalityTest primeNumberOne, PrimalityTest primeNumberTwo) {
+    public KeyPair(PrimalityTest primeNumberOne, PrimalityTest primeNumberTwo, int modulus) {
         this.primeNumberOne = primeNumberOne;
         this.primeNumberTwo = primeNumberTwo;
+        this.modulus = modulus
     }
 
-    private int getModulus () {
-        return computedKeyLength();
+    public int getModulus() {
+        return modulus;
+    }
+
+    public void setModulus(int modulus) {
+        this.modulus = modulus;
     }
 
     private int getPhi () {
-        return computePhi();
+        return this.computePhi();
     }
 
     private int computeKeyLength() {
-        return primeNumberOne * primeNumberTwo;
+        return this.primeNumberOne * this.primeNumberTwo;
     }
 
     private int computePhi() {

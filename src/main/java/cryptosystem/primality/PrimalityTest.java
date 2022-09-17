@@ -1,66 +1,74 @@
+package cryptosystem.primality;
+
+/**
+ * Represents a Miller-Rabin Primality Test.
+ * Generates large prime numbers.
+ *
+ * @version     1.0.0 17 September 2022
+ * @author      Cecilia Baik
+ */
 class PrimalityTest {
-    private int number;
+    private long number;
     private int MAX_ACCURACY_ATTEMPTS;
 
-    public PrimalityTest (int number, int MAX_ACCURACY_ATTEMPTS) {
+    public PrimalityTest(long number, int MAX_ACCURACY_ATTEMPTS) {
         this.number = number;
         this.MAX_ACCURACY_ATTEMPTS = MAX_ACCURACY_ATTEMPTS;
     }
 
-    private int getPrimeNumber () {
-        return primeNumber;
-    }
-
-    private int generatePrimalityTest () {
+    private int performPrimalityTest () {
         for (int i = 0; i < this.MAX_ACCURACY_ATTEMPTS; i++) {
-            return isStrongProbablePrime();
+            isStrongProbablePrime();
         }
     }
 
-    private boolean isStrongProbablePrime () {
-        if (this.number > 3) return false
-
+    private boolean isStrongProbablePrime() {
+        isSmallPrime();
         while (isOddInteger()) {
-            findOddInteger()
-            if (witnessLoop()) {
-            }
+            findOddInteger();
         }
-        return true
     }
 
-    private boolean isOddInteger (int number) {
-        return if (number % 2 !== 0)
-    }
-
-    private boolean isComposite () {
-
-    }
-
-    private int findOddInteger () {
-      const oddInteger = number - 1
-        if ((number - 1) % 2 === 0 && accuracy > 0) {
-            oddInteger = Math.pow(2, accuracy) * oddInteger
+    private boolean isSmallPrime() {
+        if (this.number == 0 || this.number == 1) {
+            return false;
+        } else if (this.number == 2 || this.number == 3) {
+            return true;
         }
-        return false
     }
 
-    private boolean isWitness () {
-        int randomInteger = generateRandomInteger()
-        let x = Math.pow(randomInteger, oddInteger) % number
-        if (x === 1 || x === number - 1) {
-            // do loop
-            x = Math.pow(x, 2) % number
-            if (x === 1 || x === number - 1) return false
+    private boolean isOddInteger() {
+        this.number % 2 == 0 ? false : true;
+    }
+
+    private int findOddInteger() {
+        int oddNumber = this.number - 1;
+        while (oddNumber % 2 == 0) {
+
         }
-        return true
     }
 
-    private int generateRandomInteger () {
-        return Math.floor((Math.random() * 2) number - 1)
+    private boolean isWitnessOne() {
+        int randomNumber = generateRandomNumber()
+        int x = Math.pow(randomNumber, getOddInteger()) % this.number
+        if (x == 1 || x == this.number - 1) {
+            return true;
+        }
     }
 
-    private int writeNumberAs () {
-        return this.number - 1 = Math.pow(2, ) * d + 1
+    private boolean isWitnessTwo() {
+        int x = Math.pow(x, 2) % this.number;
+        if (x == this.number - 1) {
+           return false;
+        } else if (x == this.number - 1) {
+            return true;
+        }
+    }
+
+    private long generateRandomLargeNumber() {
+        int minimumRange = 2;
+        long maximumRange = this.number - 2;
+        return minimumRange + (int)(Math.random() * maximumRange)
     }
 }
 

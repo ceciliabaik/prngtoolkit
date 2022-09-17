@@ -1,7 +1,11 @@
-public class PublicKey extends KeyPair {
-    private int publicExponent
+package croyptosystem.key;
 
-    public PublicKey (int publicExponent) {
+public class PublicKey extends KeyPair {
+    private int publicExponent;
+    private KeyPair keyPair;
+
+    public PublicKey (int modulus, int publicExponent) {
+        super(modulus);
         this.publicExponent = publicExponent;
     }
 
@@ -10,6 +14,7 @@ public class PublicKey extends KeyPair {
     }
 
     private int computePublicExponent () {
+
     }
 
     private int findCoPrimeToPhi () {

@@ -1,38 +1,42 @@
-import java.util.stream.IntStream;
+package cryptosystem.crypto;
 
+/**
+ * Represents a RSA encryption system.
+ *
+ * @version     1.0.0 17 September 2022
+ * @author      Cecilia Baik
+ */
 public class Cryptosystem {
     private String plainText;
+    private int cipherText;
     private KeyPair publicKey;
     private KeyPair privateKey;
 
-    public Cryptosystem(String plainText) {
-        this.plainText = plainText
+    public Cryptosystem(String plainText, int cipherText) {
+        this.plainText = plainText;
+        this.cipherText = cipherText;
     }
 
-    public int encrypt (PublicKey publicKey) {
-        return Math.pow(this.plainText, publicKey.getPublicExponent()) % publicKey.getModulus();
+    public int encrypt() {
+        return this.performEncryption();
     }
 
-    public int decrypt (PrivateKey privateKey , cipherText) {
-        return Math.pow(cipherText, privateKey.getPrivateExponent() % privateKey.getModulus()
+    public int decrypt() {
+        return this.performDecryption();
     }
 
-    private int reduceToLargeNumber () {
-        int sum = Arrays.stream(asciiCodeList).reduce(0, left, right)
+    private int performEncryptionOfPlainText(PublicKey publicKey, String plainText) {
+        int publicKey = publicKey.getPublicExponent();
+        int modulus = publicKey.getModulus()
+        int encryptedMessage =  Math.pow(this.plainText, publicKey) % modulus;
+        return encryptedMessage;
     }
 
-    private char convertToASCII () {
-        ArrayList<Integer> asciiCodeList = new ArrayList<>();
-        for (int i = 0; i < this.plainText.length; i++) {
-            char character = this.plainText.charAt(i)
-            return asciiCodeList.add(i);
-        }
-    }
-
-    private char convertToCharacter (ArrayList<Integer> asciiCodeList) {
-        for (int i = 0; i < asciiCodeList.length; i++) {
-            return char[] asciiCode = Character.toString(i);
-        }
+    private int performDecryptionOfCipherText(PrivateKey privateKey , int cipherText) {
+        int privateExponent =  privateKey.getPrivateExponent()
+        int modulus = privateKey.getModulus()
+        int decryptedMessage = Math.pow(cipherText, privateExponent) % modulus;
+        return decryptedMessage;
     }
 }
 
