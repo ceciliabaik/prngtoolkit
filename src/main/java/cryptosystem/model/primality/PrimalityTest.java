@@ -16,6 +16,10 @@ class PrimalityTest {
         this.MAX_ACCURACY_ATTEMPTS = MAX_ACCURACY_ATTEMPTS;
     }
 
+    public BigInteger getPrime() {
+        return prime;
+    }
+
     private int performPrimalityTest () {
         for (int i = 0; i < this.MAX_ACCURACY_ATTEMPTS; i++) {
             isStrongProbablePrime();

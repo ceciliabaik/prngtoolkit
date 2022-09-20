@@ -1,6 +1,6 @@
-public class Converter {
+public class ASCIIConverter {
 
-    public converter() {
+    public ASCIIConverter() {
 
     }
 
