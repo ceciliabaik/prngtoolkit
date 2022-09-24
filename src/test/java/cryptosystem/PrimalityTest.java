@@ -1,12 +1,5 @@
-package cryptosystem.primality;
+package cryptosystem.model.primality;
 
-/**
- * Represents a Miller-Rabin Primality Test.
- * Generates large prime numbers.
- *
- * @version     1.0.0 17 September 2022
- * @author      Cecilia Baik
- */
 class PrimalityTest {
     private long number;
     private int MAX_ACCURACY_ATTEMPTS;
