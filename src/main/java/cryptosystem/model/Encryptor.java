@@ -2,20 +2,29 @@ package cryptosystem;
 
 import java.lang.Math;
 
+/**
+ * @author Cecilia Baik
+ */
 public class Encryptor {
-    PaddingScheme paddingScheme;
-    private BigInteger message;
+    private PaddingScheme padding;
+    private PublicKey publicKey;
+    private byte[] message;
+    private BigInteger modulus;
     private BigInteger ciphertext;
 
     public Encryptor() {
-        message = paddingScheme.getEncodedMessage();
+        message = padding.getEncodedMessage();
+    }
+
+    private BigInteger reduceMessageToSingleNumber() {
+        message =
+    }
+
+    public void encrypt() {
+        ciphertext = message.modPow(publicKey, modulus);
     }
 
     public BigInteger getCiphertext() {
         return ciphertext;
-    }
-
-    public void encrypt() {
-        ciphertext = message.pow(key.getPublicExponent()) % key.getModulus();
     }
 }

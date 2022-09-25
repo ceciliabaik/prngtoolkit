@@ -8,8 +8,9 @@ import view.ConsoleUI;
 public class CryptosystemDemo {
     public static void main(String[] args) throws Exception {
         Cryptosystem crypto = new Cryptosystem();
-        KeyGenerator keyGenerator = new KeyGenerator();
-        ConsoleUI ui = new ConsoleUi();
-        crypto.init(keyGenerator, ui);
+        crypto.init();
+        crypto.getKeyGenerator();
+        crypto.encrypt();
+        crypto.decrypt();
     }
 }
