@@ -1,4 +1,4 @@
-package cryptosystem;
+package cryptosystem.model;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
