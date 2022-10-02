@@ -2,45 +2,44 @@ package cryptosystem.model;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.util.Objects;
 
 /**
- * This class generates strong probable prime numbers.
- *
  * @author Cecilia Baik
  */
-public class ProbablePrime extends BigInteger {
-    private final SecureRandom random;
-    private final int bitLength;
-    private final int certainty;
+public class ProbablePrime {
+    private int bitLength;
+    private BigInteger value;
+    private final int MIN_BIT_LENGTH;
 
     public ProbablePrime() {
-        super("0");
-        random = new SecureRandom();
-        bitLength = 512;
-        certainty = 1;
+        bitLength = 2014 / 2; // Generate random bit length.
+        MIN_BIT_LENGTH = (bitLength * 2) - bitLength;
     }
 
-    public BigInteger getRandomCandidateOfProbablePrime() throws ArithmeticException {
-        return BigInteger.probablePrime(bitLength, random);
+    public BigInteger getRandomCandidate() throws ArithmeticException {
+        SecureRandom random = new SecureRandom();
+        value = BigInteger.probablePrime(getBitLength() , random);
+        return value;
     }
 
     private boolean candidateToBeTestedForPrimality(BigInteger candidate) {
+        int certainty = 1;
         return candidate.isProbablePrime(certainty);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        ProbablePrime that = (ProbablePrime) o;
-        return bitLength == that.bitLength && certainty == that.certainty && Objects.equals(random, that.random);
+    /**
+     * Returns the last generated prime value.
+     */
+    public BigInteger getValue() {
+        return value;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), random, bitLength, certainty);
+    public int getBitLength() {
+        return bitLength;
+    }
+
+    public void setBitLength(int bitLength) {
+        this.bitLength = Math.max(bitLength, MIN_BIT_LENGTH);
     }
 }
 
