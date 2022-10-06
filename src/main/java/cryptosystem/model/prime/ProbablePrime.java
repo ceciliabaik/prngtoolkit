@@ -1,9 +1,11 @@
-package cryptosystem.model;
+package cryptosystem.model.prime;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
 /**
+ * Represents a strong probable prime.
+ *
  * @author Cecilia Baik
  */
 public class ProbablePrime {
@@ -12,26 +14,19 @@ public class ProbablePrime {
     private final int MIN_BIT_LENGTH;
 
     public ProbablePrime() {
-        bitLength = 2014 / 2; // Generate random bit length.
-        MIN_BIT_LENGTH = (bitLength * 2) - bitLength;
+        bitLength = 1024 / 2;
+        MIN_BIT_LENGTH = bitLength - (bitLength / 2);
     }
 
-    public BigInteger getRandomCandidate() throws ArithmeticException {
+    public BigInteger generateRandomCandidate() throws ArithmeticException {
         SecureRandom random = new SecureRandom();
-        value = BigInteger.probablePrime(getBitLength() , random);
+        value = BigInteger.probablePrime(bitLength, random);
         return value;
     }
 
-    private boolean candidateToBeTestedForPrimality(BigInteger candidate) {
-        int certainty = 1;
+    public boolean candidateToBeTestedForPrimality(BigInteger candidate) {
+        int certainty = 100;
         return candidate.isProbablePrime(certainty);
-    }
-
-    /**
-     * Returns the last generated prime value.
-     */
-    public BigInteger getValue() {
-        return value;
     }
 
     public int getBitLength() {
@@ -40,6 +35,13 @@ public class ProbablePrime {
 
     public void setBitLength(int bitLength) {
         this.bitLength = Math.max(bitLength, MIN_BIT_LENGTH);
+    }
+
+    /**
+     * Returns the last generated probable prime value.
+     */
+    public BigInteger getValue() {
+        return value;
     }
 }
 

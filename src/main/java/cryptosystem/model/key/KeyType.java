@@ -1,4 +1,4 @@
-package cryptosystem.model.factory;
+package cryptosystem.model.key;
 
 /**
  * @author Cecilia Baik
