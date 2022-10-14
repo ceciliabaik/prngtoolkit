@@ -14,7 +14,7 @@ public class ProbablePrime {
     private final int MIN_BIT_LENGTH;
 
     public ProbablePrime() {
-        bitLength = 1024 / 2;
+        bitLength = 2048 / 2;
         MIN_BIT_LENGTH = bitLength - (bitLength / 2);
     }
 

@@ -2,9 +2,6 @@ package cryptosystem.model.key;
 
 import java.math.BigInteger;
 
-/**
- * @author Cecilia Baik
- */
 public abstract class Key {
     private BigInteger exponent;
     private BigInteger modulus;
@@ -14,13 +11,7 @@ public abstract class Key {
         setModulus(modulus);
     }
 
-    public BigInteger getModulus() {
-        return modulus;
-    }
-
-    public void setModulus(BigInteger modulus) {
-        this.modulus = modulus;
-    }
+    public abstract BigInteger generate();
 
     public BigInteger getExponent() {
         return exponent;
@@ -28,6 +19,14 @@ public abstract class Key {
 
     public void setExponent(BigInteger exponent) {
         this.exponent = exponent;
+    }
+
+    public BigInteger getModulus() {
+        return modulus;
+    }
+
+    public void setModulus(BigInteger modulus) {
+        this.modulus = modulus;
     }
 
     @Override

@@ -1,39 +1,27 @@
-package cryptosystem.crypto;
+package cryptosystem.cipher;
 
 import cryptosystem.model.key.PrivateKey;
 import cryptosystem.model.key.PublicKey;
 
 import java.math.BigInteger;
 
-/**
- * @author Cecilia Baik
- */
-public class RSACryptosystem implements Cryptosystem {
+public class Cipher {
     private BigInteger plaintext;
     private BigInteger ciphertext;
-    private PublicKey publicKey;
-    private PrivateKey privateKey;
 
-    public RSACryptosystem(PublicKey publicKey, PrivateKey privateKey) {
-        this.publicKey = publicKey;
-        this.privateKey = privateKey;
-    }
+    public Cipher() {}
 
-    public RSACryptosystem() {
-
-    }
-
-    public BigInteger encrypt(BigInteger message) {
+    public BigInteger encrypt(BigInteger message, PublicKey publicKey) {
         BigInteger publicExponent = publicKey.getExponent();
         BigInteger modulus = publicKey.getModulus();
         ciphertext = message.modPow(publicExponent, modulus);
         return ciphertext;
     }
 
-    public BigInteger decrypt(BigInteger ciphertext) {
+    public BigInteger decrypt(BigInteger encryptedMessage, PrivateKey privateKey) {
         BigInteger privateExponent = privateKey.getExponent();
-        BigInteger modulus = publicKey.getModulus();
-        plaintext = ciphertext.modPow(privateExponent, modulus);
+        BigInteger modulus = privateKey.getModulus();
+        plaintext = encryptedMessage.modPow(privateExponent, modulus);
         return plaintext;
     }
 
