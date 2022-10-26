@@ -1,4 +1,4 @@
-package cryptosystem.model.key;
+package model.key;
 
 import java.math.BigInteger;
 
@@ -7,11 +7,7 @@ public class PublicKey extends Key {
     public PublicKey(BigInteger exponent, BigInteger modulus) {
         super(exponent, modulus);
         setExponent(BigInteger.valueOf(0));
-    }
-
-    @Override
-    public BigInteger generate() {
-        return super.getExponent().mod(super.getModulus());
+        setModulus(BigInteger.valueOf(0));
     }
 
     @Override

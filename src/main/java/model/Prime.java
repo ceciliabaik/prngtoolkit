@@ -1,31 +1,28 @@
-package cryptosystem.model.prime;
+package model;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-/**
- * Represents a strong probable prime.
- *
- * @author Cecilia Baik
- */
 public class ProbablePrime {
     private int bitLength;
     private BigInteger value;
     private final int MIN_BIT_LENGTH;
+    private final int certainty;
+    private final SecureRandom random;
 
     public ProbablePrime() {
         bitLength = 2048 / 2;
         MIN_BIT_LENGTH = bitLength - (bitLength / 2);
+        certainty = 100;
+        random = new SecureRandom();
     }
 
     public BigInteger generateRandomCandidate() throws ArithmeticException {
-        SecureRandom random = new SecureRandom();
-        value = BigInteger.probablePrime(bitLength, random);
+        value = BigInteger.probablePrime(this.getBitLength(), random);
         return value;
     }
 
-    public boolean candidateToBeTestedForPrimality(BigInteger candidate) {
-        int certainty = 100;
+    public boolean primalityTestForCandidate(BigInteger candidate) {
         return candidate.isProbablePrime(certainty);
     }
 

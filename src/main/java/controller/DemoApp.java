@@ -1,14 +1,11 @@
-package cryptosystem;
+package controller;
 
-import cryptosystem.cipher.Cipher;
-import cryptosystem.controller.SystemController;
-import cryptosystem.model.key.KeyGenerator;
-import cryptosystem.model.key.PrivateKey;
-import cryptosystem.model.key.PublicKey;
-import cryptosystem.scheme.PaddingScheme;
-import cryptosystem.view.ConsoleUI;
+import cipher.Cipher;
+import model.PrivateKey;
+import model.PublicKey;
+import scheme.PaddingScheme;
+import view.ConsoleUI;
 
-import java.io.IOException;
 import java.math.BigInteger;
 
 /**
@@ -37,12 +34,12 @@ public class RSACryptosystemDemo {
 
         ConsoleUI userInterface = new ConsoleUI();
 
-        SystemController controller = new SystemController();
+        CryptosystemController controller = new CryptosystemController();
         controller.start();
 
         PaddingScheme paddingScheme = new PaddingScheme();
         String inputMessage = userInterface.getInputMessage();
-        paddingScheme.convertStringToBytes(inputMessage);
+        paddingScheme.encodeStringToBytes(inputMessage);
         String message = paddingScheme.getEncodedMessage();
 
         // Generates the key pair of public key and private key.

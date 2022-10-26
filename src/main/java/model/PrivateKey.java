@@ -1,16 +1,15 @@
-package cryptosystem.model.key;
+package model.key;
 
 import java.math.BigInteger;
 
 public class PrivateKey extends Key {
+    private final PublicKey publicKey;
 
-    public PrivateKey(BigInteger exponent, BigInteger modulus) {
+    public PrivateKey(BigInteger exponent, BigInteger modulus, PublicKey publicKey) {
         super(exponent, modulus);
-    }
-
-    @Override
-    public BigInteger generate() {
-        return super.getExponent().mod(super.getModulus());
+        this.publicKey = publicKey;
+        setExponent(BigInteger.valueOf(0));
+        setModulus(BigInteger.valueOf(0));
     }
 
     @Override
@@ -30,6 +29,7 @@ public class PrivateKey extends Key {
 
     @Override
     public void setModulus(BigInteger modulus) {
+        modulus = publicKey.getModulus();
         super.setModulus(modulus);
     }
 
