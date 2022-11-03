@@ -1,35 +1,57 @@
-package model;
+package model.key;
+
+import model.Prime;
 
 import java.math.BigInteger;
 
-public class PublicKey extends Key implements Modulus {
-    private BigInteger exponent;
+public class PublicKeyBuilder implements Key {
 
-    public PublicKey(BigInteger exponent) {
-        super(exponent);
+    private BigInteger publicExponent;
+    private BigInteger modulus;
+    protected Prime prime1;
+    protected Prime prime2;
+
+    public PublicKeyBuilder(BigInteger publicExponent, BigInteger modulus) {
+        this.publicExponent = publicExponent;
+        this.modulus = modulus;
+        init();
     }
 
-    @Override
-    protected BigInteger calculateExponent() {
-        while (isGreatestCommonDivisor() && isLessThanPhiAndGreaterThanOne()) {
-            exponent = BigInteger.valueOf(65537);
+    private void init () {
+        while (!isPrimeEven()) {
+            prime1 = new Prime();
+            prime2 = new Prime();
         }
-        return exponent;
+    }
+
+    private boolean isPrimeEven() {
+        if (prime1.getValue().equals(prime2.getValue())) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public BigInteger calculateKeyLengthForModulus() {
+    public BigInteger calcExponent() {
+        return BigInteger.valueOf(65537);
+    }
+
+    public boolean isGreatestCommonDivisor() {
+        return calcCoprimeRangeForPhi().gcd(calcExponent()).compareTo(BigInteger.ONE) > 0;
+    }
+
+    public boolean isLessThanPhiAndGreaterThanOne() {
+        return calcExponent().compareTo(BigInteger.ONE) > 0;
+    }
+
+    public BigInteger calcKeyLengthForModulus() {
         return prime1.getValue().multiply(prime2.getValue());
     }
 
-    @Override
-    public boolean isGreatestCommonDivisor() {
-        return phi.gcd(calcExponent()).compareTo(BigInteger.ONE) > 0;
-    }
-
-    @Override
-    public boolean isLessThanPhiAndGreaterThanOne() {
-        return this.getExponent().compareTo(BigInteger.ONE) > 0;
+    public BigInteger calcCoprimeRangeForPhi() {
+        BigInteger subtractedPrime1 = prime1.getValue().subtract(BigInteger.ONE);
+        BigInteger subtractedPrime2 = prime2.getValue().subtract(BigInteger.ONE);
+        return (subtractedPrime1).multiply(subtractedPrime2);
     }
 }
 

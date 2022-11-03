@@ -1,17 +1,19 @@
-package model;
+package model.key;
 
 import java.math.BigInteger;
 
-public class PrivateKey extends Key {
+public class PrivateKeyBuilder implements Key {
 
-    public PrivateKey(BigInteger exponent) {
-        super(exponent);
+    private BigInteger privateExponent;
+    protected PublicKeyBuilder publicKey;
+
+    public PrivateKeyBuilder(BigInteger privateExponent) {
+        this.privateExponent = privateExponent;
     }
 
     @Override
-    protected BigInteger calculateExponent() {
-        BigInteger publicKey = BigInteger.valueOf(65537);
-        return publicKey.modInverse(phi);
+    public BigInteger calcExponent() {
+        return publicKey.calcExponent().modInverse(publicKey.calcCoprimeRangeForPhi());
     }
 }
 
