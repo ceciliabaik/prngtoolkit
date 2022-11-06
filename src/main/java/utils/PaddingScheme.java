@@ -1,35 +1,37 @@
-package scheme;
+package model;
 
 import java.util.Base64;
 
 public class PaddingScheme {
-    private final Base64.Encoder encoder;
-    private final Base64.Decoder decoder;
     private String encodedMessage;
     private String decodedMessage;
+    private final Base64.Encoder encoder;
+    private final Base64.Decoder decoder;
+
 
     public PaddingScheme() {
         encoder = Base64.getEncoder();
         decoder = Base64.getDecoder();
     }
 
-    public String encodeStringToBytes(String message) {
+    public boolean encodeStringToBytes(String message) {
         if (message == null) {
             throw new IllegalArgumentException("The message can not be empty");
         } else {
             byte[] bytes = message.getBytes();
             encodedMessage = encoder.encodeToString(bytes);
-            return encodedMessage;
+
         }
+        return false;
     }
 
-    public String decodeBytesToString(String encodedMessage) {
+    public boolean decodeBytesToString(String encodedMessage) {
         if (encodedMessage == null) {
             throw new IllegalArgumentException("The encoded message can not be empty");
         } else {
             decodedMessage = new String(decoder.decode(encodedMessage));
-            return decodedMessage;
         }
+        return false;
     }
 
     public String getEncodedMessage() {

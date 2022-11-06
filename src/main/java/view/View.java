@@ -1,2 +1,2 @@
-package view;public class View {
+package view;public interface View {
 }

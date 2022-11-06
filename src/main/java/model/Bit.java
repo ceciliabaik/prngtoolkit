@@ -1,10 +1,10 @@
-package model.prime;
+package model;
 
-public class BinaryDigit {
+public class Bit {
     private int bitLength;
     private final int MIN_BIT_LENGTH;
 
-    public BinaryDigit(int bitLength) {
+    public Bit(int bitLength) {
         this.bitLength = bitLength;
         MIN_BIT_LENGTH = getBitLength() - (getBitLength() / 2);
     }
