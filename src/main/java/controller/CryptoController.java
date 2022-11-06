@@ -4,25 +4,24 @@ import model.Cryptosystem;
 import view.View;
 
 public class CryptoController {
-    private Cryptosystem cryptosystem;
-    private View view;
 
-    public CryptoController(Cryptosystem cryptosystem, View view) {
-        this.cryptosystem = cryptosystem;
-        this.view = view;
-    }
-
-    public void run() {
+    public boolean run(Cryptosystem cryptosystem, View view) {
         view.displayWelcomeMessage();
-        
-        while (cryptosystem.isRunning()) {
-            view.promptForBitLength();
-            view.displayKeyGenerateMessage();
-            view.displayPublicKey();
-            view.promptForDecryption();
-        }
+
+        view.promptForBitLength();
+
+        view.displayKeyGenerateMessage();
+        view.displayPublicKey();
+        view.displayPrivateKey();
+
+        view.promptForEncryption();
+        view.displayCiphertext();
+        view.promptForDecryption();
+        view.displayPlaintext();
+
+        int userInput = view.getUserInput();
     }
-    
+
     public void updateView() {
     }
 }
