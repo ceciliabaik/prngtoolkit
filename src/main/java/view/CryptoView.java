@@ -1,6 +1,8 @@
 package view;
 
-public class CryptosystemView {
+import java.io.IOException;
+
+public class CryptoView implements View {
     public void displayWelcomeMessage() {
         System.out.println("-------------------------------");
         System.out.println("Welcome to the RSA Cryptosystem");
@@ -11,8 +13,21 @@ public class CryptosystemView {
         System.out.println("Enter a bit length of 1024, 2048 or 4096: ");
     }
 
+    public int getUserInput() {}
+
+    public void displayPrivateKey() {
+
+    }
+
+    public void displayCiphertext() {
+
+    }
+
+    public void displayPlaintext() {
+    }
+
     public void displayKeyGenerateMessage() {
-        System.out.println("Start generate key pair ");
+        System.out.println("Start generate key pair by using the specified bit length ");
     }
 
     public void displayPublicKey() {
