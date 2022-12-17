@@ -3,24 +3,17 @@ package model;
 import java.math.BigInteger;
 
 public class Cryptosystem {
-    private BigInteger ciphertext;
-    private BigInteger plaintext;
 
-    public BigInteger encrypt(BigInteger message, PublicKey publicKey) {
-        ciphertext = message.modPow(publicKey.getPublicExponent(), publicKey.getModulus());
-        return ciphertext;
+    public void generateKeyPair() {
+        KeyGenerator keyGenerator = new KeyGenerator(2048);
+        keyGenerator.generateKeyPair();
     }
 
-    public BigInteger decrypt(BigInteger encryptedMessage, PrivateKey privateKey) {
-        plaintext = encryptedMessage.modPow(privateKey.getPrivateExponent(), privateKey.getModulus());
-        return plaintext;
+    public BigInteger encrypt(BigInteger plaintext, PublicKey publicKey) {
+        return plaintext.modPow(publicKey.getPublicExponent(), publicKey.getModulus());
     }
 
-    public BigInteger getCiphertext() {
-        return ciphertext;
-    }
-
-    public BigInteger getPlaintext() {
-        return plaintext;
+    public BigInteger decrypt(BigInteger ciphertext, PrivateKey privateKey) {
+        return ciphertext.modPow(privateKey.getPrivateExponent(), privateKey.getModulus());
     }
 }
