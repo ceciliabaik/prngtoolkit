@@ -6,7 +6,7 @@ public class Bit {
 
     public Bit(int bitLength) {
         this.bitLength = bitLength;
-        MIN_BIT_LENGTH = getBitLength() - (getBitLength() / 2);
+        MIN_BIT_LENGTH = bitLength - (bitLength / 2);
     }
 
     public int getBitLength() {

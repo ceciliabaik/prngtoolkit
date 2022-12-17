@@ -1,7 +1,5 @@
 package view;
 
-import java.io.IOException;
-
 public class CryptoView implements View {
     public void displayWelcomeMessage() {
         System.out.println("-------------------------------");
@@ -12,8 +10,6 @@ public class CryptoView implements View {
     public void promptForBitLength() {
         System.out.println("Enter a bit length of 1024, 2048 or 4096: ");
     }
-
-    public int getUserInput() {}
 
     public void displayPrivateKey() {
 

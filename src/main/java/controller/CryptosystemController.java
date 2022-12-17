@@ -5,7 +5,7 @@ import view.View;
 
 public class CryptoController {
 
-    public boolean run(Cryptosystem cryptosystem, View view) {
+    public void run(Cryptosystem cryptosystem, View view) {
         view.displayWelcomeMessage();
 
         view.promptForBitLength();
@@ -18,8 +18,6 @@ public class CryptoController {
         view.displayCiphertext();
         view.promptForDecryption();
         view.displayPlaintext();
-
-        int userInput = view.getUserInput();
     }
 
     public void updateView() {
