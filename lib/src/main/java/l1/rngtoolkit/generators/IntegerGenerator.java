@@ -4,7 +4,7 @@ import java.util.Random;
 
 import l1.rngtoolkit.configs.ConfigBase;
 import l1.rngtoolkit.configs.GeneratorConfig;
-import l1.rngtoolkit.interfaces.RandomIntegerGenerator;
+import l1.rngtoolkit.generators.interfaces.RandomIntegerGenerator;
 import l1.rngtoolkit.models.Range;
 
 public class IntegerGenerator extends ConfigBase<Integer> implements RandomIntegerGenerator {

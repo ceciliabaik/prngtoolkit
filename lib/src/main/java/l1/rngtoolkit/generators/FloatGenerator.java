@@ -4,7 +4,7 @@ import java.util.Random;
 
 import l1.rngtoolkit.configs.ConfigBase;
 import l1.rngtoolkit.configs.GeneratorConfig;
-import l1.rngtoolkit.interfaces.RandomFloatGenerator;
+import l1.rngtoolkit.generators.interfaces.RandomFloatGenerator;
 import l1.rngtoolkit.models.Range;
 
 public class FloatGenerator extends ConfigBase<Float> implements RandomFloatGenerator {
