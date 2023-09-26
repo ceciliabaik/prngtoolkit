@@ -9,14 +9,16 @@ import l1.rngtoolkit.models.Range;
 
 public class IntegerGenerator extends ConfigBase<Integer> implements RandomIntegerGenerator {
   private final Random random;
-  private GeneratorConfig config;
 
   public IntegerGenerator() {
-    this.random = new Random(config.getSeed());
+    this.random = new Random();
+  }
+
+  public IntegerGenerator(long seed) {
+    this.random = new Random(seed);
   }
 
   public IntegerGenerator(GeneratorConfig config) {
-    this.config = config;
     this.random = new Random(config.getSeed());
   }
 

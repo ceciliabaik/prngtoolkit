@@ -9,14 +9,16 @@ import l1.rngtoolkit.models.Range;
 
 public class LongGenerator extends ConfigBase<Long> implements RandomLongGenerator {
   private final Random random;
-  private GeneratorConfig config;
 
   public LongGenerator() {
-    this.random = new Random(config.getSeed());
+    this.random = new Random();
+  }
+
+  public LongGenerator(long seed) {
+    this.random = new Random(seed);
   }
 
   public LongGenerator(GeneratorConfig config) {
-    this.config = config;
     this.random = new Random(config.getSeed());
   }
 

@@ -9,14 +9,16 @@ import l1.rngtoolkit.models.Range;
 
 public class FloatGenerator extends ConfigBase<Float> implements RandomFloatGenerator {
   private final Random random;
-  private GeneratorConfig config;
 
   public FloatGenerator() {
-    this.random = new Random(config.getSeed());
+    this.random = new Random();
+  }
+
+  public FloatGenerator(long seed) {
+    this.random = new Random(seed);
   }
 
   public FloatGenerator(GeneratorConfig config) {
-    this.config = config;
     this.random = new Random(config.getSeed());
   }
 

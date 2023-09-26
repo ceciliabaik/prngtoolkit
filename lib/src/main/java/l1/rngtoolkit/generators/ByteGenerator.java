@@ -9,14 +9,16 @@ import l1.rngtoolkit.models.Range;
 
 public class ByteGenerator extends ConfigBase<Byte> implements RandomByteGenerator {
   private final Random random;
-  private GeneratorConfig config;
 
   public ByteGenerator() {
-    this.random = new Random(config.getSeed());
+    this.random = new Random();
+  }
+
+  public ByteGenerator(long seed) {
+    this.random = new Random(seed);
   }
 
   public ByteGenerator(GeneratorConfig config) {
-    this.config = config;
     this.random = new Random(config.getSeed());
   }
 
