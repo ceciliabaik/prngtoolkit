@@ -2,20 +2,18 @@
 
 ## Kapitel 2: Reflektioner över namngivning
 
-| Identifierare             | Reflektion och regler                                  |
-|---------------------------|--------------------------------------------------------|
-| **RandomNumberGenerator**<br>Namn på huvudklass | **Don't Be Cute**                          |
-|                           |
-|                           |
-| **DistributionFactory**   |
-| Namn på factory klass     |
-|                       |
-| **Seed**                  | Använd "solution domain names", t.ex. datavetenskapliga termer, algoritm
-|                           | Namn på klass som representerar ett initialvärde för en slumptalsgenerator | namn, matematiska termer.
-| **Range**                 | Använd substantiv för klasser och objekt,
+| Identifierare             | Regler                    | Reflektion
+|---------------------------|---------------------------|----------------------------|
+| **RandomNumberGenerator**<br>Namn på huvudklass som representerar<br> en Random Number Generator (RNG) | **Don't Be Cute**                          |
+| **DistributionFactory**<br>Namn på factory klass som skapar olika <br>"distributions", t.ex. UniformDistribution, GaussianDistribution|                        |
+| **Seed**<br>Namn på klass som representerar ett<br> initialvärde för en slumptalsgenerator  | Använd "solution domain names",<br> t.ex. datavetenskapliga termer, algoritm  namn, matematiska termer.
+| **Range**<br>Namn på klass som representerar intervallet för max och min värde. | Använd substantiv för klasser och objekt,
+| **maxValue**<br>Namn på variabel som representerar högsta värdet. | Använd namn som avslöjar avsikt |
+|               |
+|                           | |
+|                |
 |                           | ett klassnamn ska inte vara ett verb
-| **maxValue**              | Använd namn som avslöjar avsikt
-| Namn på variabel          |
+|               |         |
 
 
 ## Reflektion över innehållet i kapitel 2
