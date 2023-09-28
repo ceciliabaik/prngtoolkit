@@ -4,9 +4,9 @@
 
 | Identifierare             | Reflektion och regler                                  |
 |---------------------------|--------------------------------------------------------|
-| **RandomNumberGenerator**<br/> | **Don't Be Cute**                          |
-| Namn på huvudklass        |
-|                       |
+| **RandomNumberGenerator**<br>Namn på huvudklass | **Don't Be Cute**                          |
+|                           |
+|                           |
 | **DistributionFactory**   |
 | Namn på factory klass     |
 |                       |
