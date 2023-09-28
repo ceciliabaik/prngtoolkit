@@ -5,10 +5,10 @@
 | Identifierare             | Reflektion och regler                                  |
 |---------------------------|--------------------------------------------------------|
 | **RandomNumberGenerator** | **Don't Be Cute**                          |
-| Namn på huvudklass        |
-| |
+| Namn på huvudklass    |
+|                           |
 | **DistributionFactory**   |
-| Namn på factory klass     |
+| Namn på factory klass   |
 | **Seed**                  | Använd "solution domain names", t.ex. datavetenskapliga termer, algoritm
 |                           | Namn på klass som representerar ett initialvärde för en slumptalsgenerator | namn, matematiska termer.
 | **Range**                 | Använd substantiv för klasser och objekt,
