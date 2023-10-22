@@ -14,7 +14,9 @@ public class DiceRollGenerator {
   }
 
   public DiceRollGenerator(Random random, int numOfSides) {
-    validateNumOfSides(numOfSides);
+    if (numOfSides < 4 || numOfSides > MAX_NUM_OF_SIDES || numOfSides % 2 != 0) {
+      throw new IllegalArgumentException("Invalid number of sides: must be an even integer between 4 and " + MAX_NUM_OF_SIDES + ".");
+    }
     this.random = random;
     this.numOfSides = numOfSides;
   }
@@ -26,17 +28,11 @@ public class DiceRollGenerator {
   public int[] rollMultipleDice(int numOfDice) {
     validateNumOfDice(numOfDice);
 
-    int[] diceValues = new int[numOfDice];
+    int[] diceRollResults = new int[numOfDice];
     for (int i = 0; i < numOfDice; i++) {
-      diceValues[i] = random.nextInt(numOfSides) + 1;
+      diceRollResults[i] = random.nextInt(numOfSides) + 1;
     }
-    return diceValues;
-  }
-
-  private void  validateNumOfSides(int numOfSides) {
-    if (numOfSides < 4 || numOfSides > MAX_NUM_OF_SIDES || numOfSides % 2 != 0) {
-      throw new IllegalArgumentException("Invalid number of sides: must be an even integer between 4 and " + MAX_NUM_OF_SIDES + ".");
-    }
+    return diceRollResults;
   }
 
   private void  validateNumOfDice(int numOfDice) {

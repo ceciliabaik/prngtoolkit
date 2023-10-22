@@ -7,26 +7,28 @@ import java.util.Random;
 
 public class DeckShuffleGenerator<T> {
   private final Random random;
-  private List<T> deck;
+  private final List<T> originalDeck;
+  private List<T> currentDeck;
 
-  public DeckShuffleGenerator(Random random, List<T> newDeck) {
-    if (newDeck == null || newDeck.isEmpty()) {
+  public DeckShuffleGenerator(Random random, List<T> deck) {
+    if (deck == null || deck.isEmpty()) {
       throw new IllegalArgumentException("Deck must not be null or empty.");
     }
     this.random = random;
-    this.deck = new ArrayList<>(newDeck);
-  }
+    this.originalDeck = new ArrayList<>(deck);
+    this.currentDeck = new ArrayList<>(deck);
+    }
 
   public List<T> shuffleDeck() {
-    Collections.shuffle(deck, random);
-    return deck;
+    Collections.shuffle(currentDeck, random);
+    return currentDeck;
   }
 
   public List<T> getShuffledDeck() {
-    return deck;
+    return currentDeck;
   }
 
   public void resetDeck() {
-    deck = new ArrayList<>(deck);
+    currentDeck = new ArrayList<>(originalDeck);
   }
 }

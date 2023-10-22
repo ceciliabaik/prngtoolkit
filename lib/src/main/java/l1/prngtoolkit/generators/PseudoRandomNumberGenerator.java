@@ -4,108 +4,86 @@ import l1.prngtoolkit.config.Configuration;
 import l1.prngtoolkit.validators.ExceptionValidator;
 
 public abstract class PseudoRandomNumberGenerator<T> implements PseudoGenerator {
-  protected static final String UNSUPPORTED_TYPE_MESSAGE = "Unsupported data type: ";
   protected final ExceptionValidator exceptionValidator;
   protected Class<T> dataType;
   protected Configuration<T> config;
-  protected long seed;
+  protected Long seed;
 
-  /**
-   * Default constructor using the default seed.
-   * Used for creating instances with default settings.
-   */
-  protected PseudoRandomNumberGenerator() {
-    // Calls the parameterized constructor with a null value for the data type.
-    this(null);
-  }
-
-  /**
-   * Constructor for creating instances using the
-   * System.currentTimeMillis() as the default seed for randomness.
-   */
-  protected PseudoRandomNumberGenerator(Class<T> dataType) {
-    this.exceptionValidator = new ExceptionValidator();
-    exceptionValidator.validateSupportedDataType(dataType);
-    this.dataType = dataType;
-  }
-
-  /**
-   * Constructor for creating instances with a custom seed for randomness.
-   */
-  protected PseudoRandomNumberGenerator(Class<T> dataType, long seed) {
-    this.exceptionValidator = new ExceptionValidator();
-    exceptionValidator.validateSupportedDataType(dataType);
-    exceptionValidator.validateSeed(seed);
-    this.dataType = dataType;
-    this.seed = seed;
-  }
-
-  /**
-   * Constructor for creating instances using a seed provided in the configuration.
-   */
-  protected PseudoRandomNumberGenerator(Class<T> dataType, Configuration<T> config) {
+  protected PseudoRandomNumberGenerator(Class<T> dataType, Long seed, Configuration<T> config) {
     this.exceptionValidator = new ExceptionValidator();
     exceptionValidator.validateSupportedDataType(dataType);
     this.dataType = dataType;
     this.config = config;
+    setSeed(seed, config);
   }
 
-  @Override
-  public int nextInt() {
-    if (dataType != Integer.class) {
-      throw new UnsupportedOperationException("nextInt is supported for Integer data type only.");
+  protected void setSeed(Long seed, Configuration<T> config) {
+    if (seed != null) {
+      this.seed = seed;
+    } else if (config != null) {
+      this.seed = config.getSeed();
+    } else {
+      this.seed = System.currentTimeMillis();
     }
-    return (int) generateNextValue();
   }
 
   @Override
-  public double nextDouble() {
-    if (dataType != Double.class) {
-      throw new UnsupportedOperationException("nextDouble is supported for Double data type only.");
+  public int getNextInt() {
+    if (!dataType.equals(Integer.class)) {
+      throw new UnsupportedOperationException("Unsupported operation in getNextInt. It is supported for Integer data type only.");
     }
-    return (double) generateNextValue();
+    return (int) generateNextOfDataType();
   }
 
   @Override
-  public int nextIntInRange(int minValue, int maxValue) {
+  public double getNextDouble() {
+    if (!dataType.equals(Double.class)) {
+      throw new UnsupportedOperationException("Unsupported operation in getNextDouble. It is supported for Double data type only.");
+    }
+    return (double) generateNextOfDataType();
+  }
+
+  @Override
+  public int getNextIntInclusive(int minValue, int maxValue) {
     exceptionValidator.validateMinValue(minValue);
     exceptionValidator.validateMaxValue(maxValue);
+    exceptionValidator.validateMinLessThanOrEqualMax(minValue, maxValue);
+
     int rangeSize = maxValue - minValue + 1;
-    return nextInt() % rangeSize + minValue;
+    return getNextInt() % rangeSize + minValue;
   }
 
   @Override
-  public double nextDoubleInRange(double minValue, double maxValue) {
+  public double getNextDoubleInclusive(double minValue, double maxValue) {
     exceptionValidator.validateMinValue(minValue);
     exceptionValidator.validateMaxValue(maxValue);
+    exceptionValidator.validateMinLessThanOrEqualMax(minValue, maxValue);
+
     double rangeSize = maxValue - minValue;
-    return nextDouble() * rangeSize + minValue;
+    return getNextDouble() * rangeSize + minValue;
   }
 
   @Override
-  public int[] nextIntSequence(int count) {
+  public int[] getNextIntSequence(int count) {
     exceptionValidator.validateCount(count);
 
     int[] intSequence = new int[count];
     for (int i = 0; i < count; i++) {
-      intSequence[i] = nextInt();
+      intSequence[i] = getNextInt();
     }
     return intSequence;
   }
 
   @Override
-  public double[] nextDoubleSequence(int count) {
+  public double[] getNextDoubleSequence(int count) {
     exceptionValidator.validateCount(count);
 
     double[] doubleSequence = new double[count];
     for (int i = 0; i < count; i++) {
-      doubleSequence[i] = nextDouble();
+      doubleSequence[i] = getNextDouble();
     }
     return doubleSequence;
   }
 
-  /**
-   * Generates the next pseudo-random value based on the specified data type.
-   */
-  protected abstract T generateNextValue();
+  protected abstract T generateNextOfDataType();
 }
