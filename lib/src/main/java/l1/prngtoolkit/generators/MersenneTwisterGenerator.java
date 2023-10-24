@@ -5,20 +5,26 @@ import org.apache.commons.math3.random.RandomGenerator;
 
 import l1.prngtoolkit.config.Configuration;
 
-public class MersenneTwisterGenerator<T> extends PseudoRandomNumberGenerator<T> {
+public class MersenneTwisterGenerator<T extends Comparable<T>> extends PseudoRandomNumberGenerator<T> {
   private final RandomGenerator randomGenerator;
 
   public MersenneTwisterGenerator(Class<T> dataType, Long seed, Configuration<T> config) {
     super(dataType, seed, config);
-    this.randomGenerator = new MersenneTwister(seed != null ? seed : config.getSeed());
+    this.randomGenerator = new MersenneTwister(getCustomSeed(seed, config));
   }
 
   @Override
-  protected T generateNextOfDataType() {
+  protected int generateNextIntOfDataType() {
     if (dataType == Integer.class) {
-      return dataType.cast(randomGenerator.nextInt());
-    } else if (dataType == Double.class) {
-      return dataType.cast(randomGenerator.nextDouble());
+      return randomGenerator.nextInt();
+    }
+    throw new UnsupportedOperationException("Unsupported data type: " + dataType.getSimpleName());
+  }
+
+  @Override
+  protected double generateNextDoubleOfDataType() {
+    if (dataType == Double.class) {
+      return randomGenerator.nextDouble();
     }
     throw new UnsupportedOperationException("Unsupported data type: " + dataType.getSimpleName());
   }

@@ -3,7 +3,7 @@ package l1.prngtoolkit.generators;
 import l1.prngtoolkit.config.Configuration;
 import l1.prngtoolkit.validators.ExceptionValidator;
 
-public abstract class PseudoRandomNumberGenerator<T> implements PseudoGenerator {
+public abstract class PseudoRandomNumberGenerator<T extends Comparable<T>> implements PseudoGenerator {
   protected final ExceptionValidator exceptionValidator;
   protected Class<T> dataType;
   protected Configuration<T> config;
@@ -27,24 +27,32 @@ public abstract class PseudoRandomNumberGenerator<T> implements PseudoGenerator 
     }
   }
 
+  protected long getCustomSeed(Long seed, Configuration<T> config) {
+    return (seed != null) ? seed : (config != null ? config.getSeed() : System.currentTimeMillis());
+  }
+
   @Override
   public int getNextInt() {
     if (!dataType.equals(Integer.class)) {
-      throw new UnsupportedOperationException("Unsupported operation in getNextInt. It is supported for Integer data type only.");
+      throw new UnsupportedOperationException(
+      "Unsupported operation in getNextInt. It is supported for Integer data type only."
+      );
     }
-    return (int) generateNextOfDataType();
+    return generateNextIntOfDataType();
   }
 
   @Override
   public double getNextDouble() {
     if (!dataType.equals(Double.class)) {
-      throw new UnsupportedOperationException("Unsupported operation in getNextDouble. It is supported for Double data type only.");
+      throw new UnsupportedOperationException(
+      "Unsupported operation in getNextDouble. It is supported for Double data type only."
+      );
     }
-    return (double) generateNextOfDataType();
+    return generateNextDoubleOfDataType();
   }
 
   @Override
-  public int getNextIntInclusive(int minValue, int maxValue) {
+  public int getNextIntInRange(int minValue, int maxValue) {
     exceptionValidator.validateMinValue(minValue);
     exceptionValidator.validateMaxValue(maxValue);
     exceptionValidator.validateMinLessThanOrEqualMax(minValue, maxValue);
@@ -54,7 +62,7 @@ public abstract class PseudoRandomNumberGenerator<T> implements PseudoGenerator 
   }
 
   @Override
-  public double getNextDoubleInclusive(double minValue, double maxValue) {
+  public double getNextDoubleInRange(double minValue, double maxValue) {
     exceptionValidator.validateMinValue(minValue);
     exceptionValidator.validateMaxValue(maxValue);
     exceptionValidator.validateMinLessThanOrEqualMax(minValue, maxValue);
@@ -85,5 +93,7 @@ public abstract class PseudoRandomNumberGenerator<T> implements PseudoGenerator 
     return doubleSequence;
   }
 
-  protected abstract T generateNextOfDataType();
+  protected abstract int generateNextIntOfDataType();
+
+  protected abstract double generateNextDoubleOfDataType();
 }
