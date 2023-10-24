@@ -8,11 +8,13 @@ import l1.prngtoolkit.generators.*;
 
 public class GeneratorFactory {
 
-  public <T> PseudoGenerator createStandardRandomGenerator(Class<T> dataType, Long seed, Configuration<T> config) {
+  public <T extends Comparable<T>> StandardRandomGenerator<T> createStandardRandomGenerator(
+    Class<T> dataType, Long seed, Configuration<T> config) {
     return new StandardRandomGenerator<>(dataType, seed, config);
   }
 
-  public <T> PseudoGenerator createMersenneTwisterGenerator(Class<T> dataType, Long seed, Configuration<T> config) {
+  public <T extends Comparable<T>> MersenneTwisterGenerator<T> createMersenneTwisterGenerator(
+    Class<T> dataType, Long seed, Configuration<T> config) {
     return new MersenneTwisterGenerator<>(dataType, seed, config);
   }
 
