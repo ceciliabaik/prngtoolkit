@@ -1,9 +1,6 @@
 # Kodkvalitetskrav
-***
-
 
 ## Kapitel 2: Reflektioner över namngivning
-***
 
 | Identifierare                                  | Reflektion och regler                                                                                                                                                              |
 |----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -16,28 +13,24 @@
 
 
 ## Reflektion över innehållet i kapitel 2
-***
 Kapitel 2 betonar vikten av *Meaningful Names* då det används överallt inom mjukvarutveckling som namngivning av variabler, funktioner, klasser etc., och därför är det lika bra att vi gör det bra! Jag ämnar hålla med författaren om att bra namn bidrar till att koden blir enklare att förstå och även att det blir mindre buggar i koden. Det är också viktigt att *Avoid Disinformation* med t.ex. förkortningar som inte har något sammanhang eller betydelse, vilket gör koden svårbegriplig. Sammanfattningsvis är min bild av kapitlet att man som programmerare ska sträva mot att kombinera bra, unika namn på klasser och funktioner som dessutom är beskrivande och gärna korta i längd.
 
 
 ## Kapitel 3: Reflektioner över funktioner
-***
 
 | Identifierare                                     | Antal rader | Reflektion och regler                                                                                                               |
 |-------------------------------------------------|--------------|---------------------------------------------------------------------------------------------------------------------------------------|
 | **simulateCoinFlipsAndUpdateStatsWithProbability** |              | - **Verbs and Keywords:** Metoden är självförklarande genom att jag använder verb som *simulate* och *update*. <br> - **Prefer Exceptions to Returning Error Codes:** Jag använder exceptions i de flesta metoder. |
-| **getNextDoubleInRangeRoundedDown(double minValue, double maxValue)** |              | - **Do One Thing:** <br> Metoden har en uppgift och den ska vara väldefinierad. <br> - **Argument Objects:** Regeln säger att metoder inte bör ha mer än 2-3 argument, och jag har därför inte mer än 2-3 argument. |
-| **getNextIntInEvenlyDivisibleRange**               |              | - **One Level of Abstraction per Function:** Metoden har ett specifikt syfte, vilket gör den mer återanvändbar, och en nivå av abstraktion genom att jag har en klass för validering. På detta sätt blir koden ren, och metoden gör en sak. <br> - **Flag Arguments:** Jag har försökt undvika flaggargument eftersom jag föredrar att använda booleans som metoder eller variabler. |
-| **createDiceRollGeneratorWithCustomSides**         |              | - **Use Descriptive Names:** Metoden har inga förkortningar i sitt namn, vilket gör koden mer uppenbar vad den har för syfte. |
-| **generateNextDoubleOfDataType**                   |              | - **Don't Repeat Yourself:** Metoden använder sig av DRY-principen eftersom den används både för klasserna StandardRandomGenerator.java och MersenneTwisterGenerator.java. <br> - **Have No Side Effects:** Genom att göra metoden liten med endast 1-4 rader kod har jag försökt undvika oönskade bieffekter. Metoden returnerar endast en sak. |
+| **getNextDoubleInRangeRoundedDown(double minValue, double maxValue)** |              | - **Do One Thing:** <br> Metoden har en uppgift och jag har försökt göra den så väldefinierad som möjligt. <br> - **Argument Objects:** Regeln säger att metoder inte bör ha mer än 2-3 argument, och jag har därför inte mer än 2-3 argument. |
+| **getNextIntInEvenlyDivisibleRange**               |              | - **One Level of Abstraction per Function:** Metoden har ett specifikt syfte, vilket gör den mer återanvändbar, och en nivå av abstraktion genom att jag har en egen klass för validering. På detta sätt blir koden ren, och metoden gör endast en sak. <br> - **Flag Arguments:** Jag har försökt undvika flaggargument och använder istället booleans som metoder eller variabler. |
+| **createDiceRollGeneratorWithCustomSides**         |              | - **Use Descriptive Names:** Metoden har inga förkortningar i sitt namn t.ex. calc, temp, vilket gör koden mer uppenbar, det vill säga vad den har för syfte. |
+| **generateNextDoubleOfDataType**                   |              | - **Don't Repeat Yourself:** Metoden använder sig av DRY-principen då den *small*  med endast 1-4 rader kod har jag försökt undvika oönskade bieffekter. Metoden returnerar endast en sak. |
 
 ## Reflektion över innehållet i kapitel 3
-***
 Keep it small! Den första regeln för funktioner är att de ska vara små. Den andra regeln är att de bör vara ännu mindre än så. Idealt sett bör en funktion vara endast två, tre eller fyra rader lång. Varje rad i funktionen ska berätta en del av historien, leda dig smidigt till nästa steg på ett engagerande sätt. Detta understryker tanken att varje funktion bör ha en specifik uppgift med högst 2-3 paramtrar och att den ska utföras effektivt. Då jag har en förkärlek till kodkvalitet vem är jag att motsäga detta, då det bidrar till en ren och läsbar kod.
 
 
 ## Reflektion
-***
 Då denna uppgift går ut på att skriva en modul med fokus på kodkvalitet har jag haft i åtanke att jag ska berätta en historia om ett pseudo random number generator system. Titeln på systemet är "prngtoolkit" som beskriver att det är ett namn för ett mjukvarubibliotek som kan användas för att hantera pseudoslumpmässiga talgeneratorer (PRNG, Pseudo Random Number Generators) inom programutveckling. Förkortningen "prng" är en vanligt förekommande term inom programmeringsvärlden och är välkänd bland utvecklare. Detta förkortade namn *prng* är i linje med regeln "Use solution domain names".
 
 Historien utspelar sig i en värld av generatorer där PseudoRandomNumberGenerator.java är huvudklassen. Denna klass har subklasser med egna självständiga och beskrivande namn som StandardRandomGenerator.java och MersenneTwisterGenerator.java. I denna värld kan man ta sig vidare till andra fristående generatorer som genererar coin flips, deck shuffles och dice rolls. För att gå till en mer avancerad nivå erbjuder en UniformDistribution.java klass som är mer specifik i sitt slumpmässiga skapande av pseudo random numbers. Såklart finns det två fabriker som arbetar dag och natt för att kunna skapa denna underbara värld av generatorer. På detta sätt har jag berättat min historia och följt de olika clean code principerna genom att hitta på tydliga och beskrivande namn med små klasser och små metoder.
