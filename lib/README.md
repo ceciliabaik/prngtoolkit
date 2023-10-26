@@ -35,13 +35,15 @@ Depending on the programming language used to develop the toolkit, you should ha
 
 Java: If it's a Java library, you can typically include it in your project using a build automation tool like Maven or Gradle. Modify your project's build file (pom.xml for Maven or build.gradle for Gradle) to include the toolkit as a dependency.
 
+```
 <dependencies>
     <dependency>
         <groupId>com.example</groupId>
         <artifactId>prng-toolkit</artifactId>
-        <version>1.0.0</version> <!-- Replace with the actual version -->
+        <version>1.0.0</version> <!-- Byt ut med den faktiska versionen -->
     </dependency>
 </dependencies>
+```
 
 4. Use the Toolkit:
 
