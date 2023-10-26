@@ -40,7 +40,7 @@ Java: If it's a Java library, you can typically include it in your project using
     <dependency>
         <groupId>com.example</groupId>
         <artifactId>prng-toolkit</artifactId>
-        <version>1.0.0</version> <!-- Byt ut med den faktiska versionen -->
+        <version>1.0.0</version> <!-- Replace with the actual version -->
     </dependency>
 </dependencies>
 ```
